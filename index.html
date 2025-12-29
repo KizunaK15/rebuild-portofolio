@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- --- SEO & META TAGS --- -->
+    <title>Prima Aji Setyawan | IoT & AI Engineer</title>
+    <meta name="description" content="Portfolio Prima Aji Setyawan, IoT & Embedded Engineer yang mengubah hardware menjadi solusi cerdas menggunakan AI dan sistem terintegrasi.">
+    <meta name="keywords" content="IoT Engineer, Embedded Systems, AI Developer, React, Arduino, ESP32, Prima Aji Setyawan, Creative Developer">
+    <meta name="author" content="Prima Aji Setyawan">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kizunak15.github.io/">
+    <meta property="og:title" content="Prima Aji Setyawan | IoT & AI Engineer">
+    <meta property="og:description" content="Mengubah Hardware Menjadi Solusi Cerdas. Lihat portfolio lengkap proyek IoT dan Inovasi AI.">
+    <meta property="og:image" content="profile.jpeg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://kizunak15.github.io/">
+    <meta property="twitter:title" content="Prima Aji Setyawan | IoT & AI Engineer">
+    <meta property="twitter:description" content="Mengubah Hardware Menjadi Solusi Cerdas. Lihat portfolio lengkap proyek IoT dan Inovasi AI.">
+    <meta property="twitter:image" content="profile.jpeg">
+
+    <!-- Schema Markup (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Prima Aji Setyawan",
+      "jobTitle": "IoT & Embedded Engineer",
+      "url": "https://kizunak15.github.io",
+      "image": "profile.jpeg",
+      "sameAs": [
+        "https://www.linkedin.com/in/primaajisetyawan",
+        "https://github.com/KizunaK15",
+        "https://wa.me/6281378642405"
+      ],
+      "knowsAbout": ["IoT", "Embedded Systems", "React", "AI Integration", "Robotics"]
+    }
+    </script>
+    
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'matrix-bg': '#050505',
+                        'matrix-text': '#e2e8f0',
+                        'matrix-accent': '#00ff88',
+                        'corp-bg': '#f8fafc',
+                        'corp-text': '#1e293b',
+                        'corp-accent': '#2563eb',
+                    },
+                    fontFamily: {
+                        mono: ['Courier New', 'monospace'],
+                        sans: ['Segoe UI', 'Roboto', 'sans-serif']
+                    },
+                    animation: {
+                        'spin-slow': 'spin 8s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+            cursor: none; /* Hide default cursor */
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        /* --- CUSTOM CURSOR --- */
+        .cursor-dot, .cursor-outline {
+            position: fixed; top: 0; left: 0; border-radius: 50%; z-index: 9999; pointer-events: none; mix-blend-mode: difference;
+        }
+        .cursor-dot { width: 8px; height: 8px; background-color: white; }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid white; transition: width 0.2s, height 0.2s; }
+        body.hovering .cursor-outline { width: 60px; height: 60px; background-color: rgba(255, 255, 255, 0.1); border-color: transparent; }
+        body.cursor-hidden .cursor-dot, body.cursor-hidden .cursor-outline { opacity: 0; transition: opacity 0.5s ease; }
+
+        /* --- GLITCH EFFECT --- */
+        .glitch-wrapper { position: relative; display: inline-block; }
+        .dark .glitch::before, .dark .glitch::after {
+            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        }
+        .dark .glitch::before {
+            left: 2px; text-shadow: -1px 0 #00ff88; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            animation: glitch-anim-1 3s infinite linear alternate-reverse;
+        }
+        .dark .glitch::after {
+            left: -2px; text-shadow: -1px 0 #bd00ff; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            animation: glitch-anim-2 2s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim-1 { 0% { clip-path: inset(20% 0 80% 0); } 100% { clip-path: inset(10% 0 60% 0); } }
+        @keyframes glitch-anim-2 { 0% { clip-path: inset(10% 0 60% 0); } 100% { clip-path: inset(40% 0 30% 0); } }
+
+        /* --- GLASS & TILT --- */
+        .glass-panel {
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tilt-card { transform-style: preserve-3d; will-change: transform; }
+        .tilt-content { transform: translateZ(20px); }
+
+        /* --- THEME SPECIFICS --- */
+        .dark body { background-color: #050505; color: #e2e8f0; }
+        .dark .glass-panel { background: rgba(5, 5, 5, 0.7); border: 1px solid rgba(0, 255, 136, 0.2); box-shadow: 0 4px 30px rgba(0, 255, 136, 0.05); }
+        .light body { background-color: #f8fafc; color: #1e293b; }
+        .light .glass-panel { background: rgba(255, 255, 255, 0.8); border: 1px solid rgba(37, 99, 235, 0.2); box-shadow: 0 4px 30px rgba(37, 99, 235, 0.1); }
+
+        /* --- UTILS --- */
+        .cyber-grid {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -5;
+            background-image: linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px; pointer-events: none;
+        }
+        .light .cyber-grid {
+             background-image: linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
+        }
+        .scanline {
+            width: 100%; height: 100px; z-index: 10;
+            background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0, 255, 136, 0.05) 50%, rgba(0,0,0,0) 100%);
+            opacity: 0.1; position: absolute; bottom: 100%; animation: scanline 8s linear infinite; pointer-events: none;
+        }
+        @keyframes scanline { 0% { bottom: 100%; } 100% { bottom: -100%; } }
+        .dark .scanline { display: block; } .light .scanline { display: none; }
+        .bottom-nav { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-top: 1px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef, useMemo } = React;
+
+        // --- DATA ---
+        const USER_DATA = {
+            name: "Prima Aji Setyawan",
+            shortName: "Prima Aji",
+            photo: "profile.jpeg",
+            email: "setyawan.ajiprima@gmail.com",
+            wa: "https://wa.me/6281378642405",
+            linkedin: "https://www.linkedin.com/in/primaajisetyawan",
+            github: "https://github.com/KizunaK15"
+        };
+
+        const TRANSLATIONS = {
+            id: {
+                nav: { home: "Beranda", projects: "Proyek", achievements: "Prestasi" },
+                headline: "Mengubah Hardware Menjadi Solusi Cerdas",
+                introPrefix: "Saya adalah seorang",
+                roles: ["IoT Engineer", "Embedded Systems Dev", "AI-Augmented Coder"],
+                contactBtn: "Hubungi Saya",
+                hallOfFame: "AULA PRESTASI",
+                missionLogs: "CATATAN MISI",
+                problemLabel: "Masalah",
+                solutionLabel: "Solusi",
+                resultLabel: "Hasil",
+                systemStatus: "SYSTEM: ONLINE",
+                projects: [
+                    {
+                        title: "Water Level Control PID",
+                        tech: "Arduino Nano, MATLAB, Lidar",
+                        problem: "Fluktuasi level air tidak stabil.",
+                        solution: "Kontrol PID presisi tinggi + sensor Lidar.",
+                        result: "Kestabilan terjaga, error < 2%."
+                    },
+                    {
+                        title: "Post Stroke Smarthand",
+                        tech: "ESP32-S3, LVGL, Web DB",
+                        problem: "Terapi pasca stroke mahal & bosan.",
+                        solution: "Sarung tangan interaktif + gamifikasi.",
+                        result: "Kepatuhan terapi mandiri meningkat."
+                    },
+                    {
+                        title: "PID Poultry Monitor",
+                        tech: "PID, IoT Sensors, Dashboard",
+                        problem: "Suhu kandang fluktuatif memicu mortalitas.",
+                        solution: "Kendali suhu & kelembaban otomatis.",
+                        result: "Mortalitas ayam menurun signifikan."
+                    },
+                    {
+                        title: "Smartgate RFID System",
+                        tech: "RFID, Firebase, Web Hosting",
+                        problem: "Akses keamanan manual lambat.",
+                        solution: "Gerbang otomatis RFID + Cloud.",
+                        result: "Akses realtime & aman."
+                    },
+                    {
+                        title: "Mushroom IoT Monitor",
+                        tech: "Blynk, PID, ESP8266",
+                        problem: "Jamur sensitif cuaca.",
+                        solution: "Misting otomatis berbasis IoT.",
+                        result: "Panen lebih berkualitas."
+                    },
+                    {
+                        title: "Stairs Climbing Robot",
+                        tech: "Mechatronics, Kinematics",
+                        problem: "Robot roda gagal di tangga.",
+                        solution: "Mekanisme kaki/track khusus.",
+                        result: "Berhasil menaiki tangga curam."
+                    }
+                ],
+                achievements: [
+                    { title: "Medali Perak - IIIEX 2025", category: "Post Stroke Smarthand Gloves", image: "silver_medal.jpeg" },
+                    { title: "Juara 3 - Polines Expo 2024", category: "Inovasi Sarung Tangan Pintar", image: "juara_polines.jpeg" }
+                ]
+            },
+            en: {
+                nav: { home: "Home", projects: "Projects", achievements: "Awards" },
+                headline: "Transforming Hardware into Intelligent Solutions",
+                introPrefix: "I am an",
+                roles: ["IoT Engineer", "Embedded Systems Dev", "AI-Augmented Coder"],
+                contactBtn: "Contact Me",
+                hallOfFame: "HALL OF FAME",
+                missionLogs: "MISSION LOGS",
+                problemLabel: "Problem",
+                solutionLabel: "Solution",
+                resultLabel: "Result",
+                systemStatus: "SYSTEM: ONLINE",
+                projects: [
+                    {
+                        title: "Water Level Control PID",
+                        tech: "Arduino Nano, MATLAB, Lidar",
+                        problem: "Unstable water level fluctuations.",
+                        solution: "High-precision PID control + Lidar.",
+                        result: "Stability maintained, error < 2%."
+                    },
+                    {
+                        title: "Post Stroke Smarthand",
+                        tech: "ESP32-S3, LVGL, Web DB",
+                        problem: "Expensive & boring therapy.",
+                        solution: "Interactive gloves + gamification.",
+                        result: "Increased self-therapy compliance."
+                    },
+                    {
+                        title: "PID Poultry Monitor",
+                        tech: "PID, IoT Sensors, Dashboard",
+                        problem: "Temp fluctuations cause mortality.",
+                        solution: "Automated climate control.",
+                        result: "Reduced poultry mortality."
+                    },
+                    {
+                        title: "Smartgate RFID System",
+                        tech: "RFID, Firebase, Web Hosting",
+                        problem: "Slow manual security access.",
+                        solution: "Cloud-integrated RFID gate.",
+                        result: "Real-time secure access."
+                    },
+                    {
+                        title: "Mushroom IoT Monitor",
+                        tech: "Blynk, PID, ESP8266",
+                        problem: "Mushrooms are climate-sensitive.",
+                        solution: "IoT-based automated misting.",
+                        result: "Higher quality harvest."
+                    },
+                    {
+                        title: "Stairs Climbing Robot",
+                        tech: "Mechatronics, Kinematics",
+                        problem: "Wheeled robots fail on stairs.",
+                        solution: "Specialized track mechanism.",
+                        result: "Successfully climbed steep stairs."
+                    }
+                ],
+                achievements: [
+                    { title: "Silver Medal - IIIEX 2025", category: "Post Stroke Smarthand Gloves", image: "silver_medal.jpeg" },
+                    { title: "3rd Place - Polines Expo 2024", category: "Smart Gloves Innovation", image: "juara_polines.jpeg" }
+                ]
+            }
+        };
+
+        // --- ICONS ---
+        const SunIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2"/><path d="M12 21v2"/><path d="M4.22 4.22l1.42 1.42"/><path d="M18.36 18.36l1.42 1.42"/><path d="M1 12h2"/><path d="M21 12h2"/><path d="M4.22 19.78l1.42-1.42"/><path d="M18.36 5.64l1.42-1.42"/></svg>;
+        const MoonIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>;
+        const TrophyIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>;
+        const ChipIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3"/><path d="M15 1v3"/><path d="M9 20v3"/><path d="M15 20v3"/><path d="M20 9h3"/><path d="M20 14h3"/><path d="M1 9h3"/><path d="M1 14h3"/></svg>;
+        const MailIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>;
+        const GithubIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>;
+        const LinkedinIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>;
+        const WarningIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>;
+        const HomeIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>;
+
+        // --- COMPONENTS ---
+        const CustomCursor = () => {
+            const dotRef = useRef(null);
+            const outlineRef = useRef(null);
+            const requestRef = useRef(null);
+            const mousePos = useRef({ x: 0, y: 0 });
+            const outlinePos = useRef({ x: 0, y: 0 });
+
+            useEffect(() => {
+                const onMouseMove = (e) => {
+                    mousePos.current = { x: e.clientX, y: e.clientY };
+                    if (dotRef.current) dotRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+                    document.body.classList.remove('cursor-hidden');
+                };
+                const animateOutline = () => {
+                    const ease = 0.15;
+                    outlinePos.current.x += (mousePos.current.x - outlinePos.current.x) * ease;
+                    outlinePos.current.y += (mousePos.current.y - outlinePos.current.y) * ease;
+                    if (outlineRef.current) outlineRef.current.style.transform = `translate(${outlinePos.current.x}px, ${outlinePos.current.y}px) translate(-50%, -50%)`;
+                    requestRef.current = requestAnimationFrame(animateOutline);
+                };
+                window.addEventListener('mousemove', onMouseMove);
+                requestRef.current = requestAnimationFrame(animateOutline);
+                const handleHover = (e) => document.body.classList[e.type === 'mouseover' && e.target.closest('a, button, .interactive') ? 'add' : 'remove']('hovering');
+                document.addEventListener('mouseover', handleHover);
+                document.addEventListener('mouseout', handleHover);
+                return () => {
+                    window.removeEventListener('mousemove', onMouseMove);
+                    cancelAnimationFrame(requestRef.current);
+                    document.removeEventListener('mouseover', handleHover);
+                    document.removeEventListener('mouseout', handleHover);
+                };
+            }, []);
+            return <><div ref={dotRef} className="cursor-dot hidden md:block"></div><div ref={outlineRef} className="cursor-outline hidden md:block"></div></>;
+        };
+
+        const SmartImage = ({ src, alt, className }) => {
+            const [status, setStatus] = useState('loading');
+            return (
+                <div className={`relative overflow-hidden bg-gray-900 ${className}`}>
+                    {status === 'loading' && <div className="absolute inset-0 bg-gray-800 animate-pulse z-10"></div>}
+                    {status === 'error' ? (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-red-500 bg-gray-950 p-2 text-center border border-red-900/50">
+                            <WarningIcon />
+                            <span className="text-[10px] font-mono mt-1 tracking-widest">ERR</span>
+                        </div>
+                    ) : (
+                        <img src={src} alt={alt} loading="lazy" decoding="async" className={`w-full h-full object-cover transition-opacity duration-500 ${status === 'loading' ? 'opacity-0' : 'opacity-100'}`} onLoad={() => setStatus('loaded')} onError={() => setStatus('error')} />
+                    )}
+                </div>
+            );
+        };
+
+        const TiltCard = ({ children, className = "" }) => {
+            const cardRef = useRef(null);
+            const handleMove = (e) => {
+                if (!cardRef.current || window.innerWidth < 768) return; // Disable tilt on mobile
+                const rect = cardRef.current.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -5;
+                const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 5;
+                cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
+            };
+            const handleLeave = () => {
+                if (cardRef.current) cardRef.current.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            };
+            return (
+                <div ref={cardRef} className={`tilt-card interactive ${className}`} onMouseMove={handleMove} onMouseLeave={handleLeave}>
+                    <div className="tilt-content h-full">{children}</div>
+                </div>
+            );
+        };
+
+        const CyberBackground = ({ isDark }) => {
+            const canvasRef = useRef(null);
+            useEffect(() => {
+                const canvas = canvasRef.current;
+                const ctx = canvas.getContext('2d');
+                let width, height, particles = [];
+                let mouse = { x: -1000, y: -1000 };
+                const color = isDark ? { r: 0, g: 255, b: 136 } : { r: 37, g: 99, b: 235 };
+                const resize = () => { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; };
+                class Particle {
+                    constructor() {
+                        this.x = Math.random() * width; this.y = Math.random() * height;
+                        this.vx = (Math.random() - 0.5) * 0.5; this.vy = (Math.random() - 0.5) * 0.5;
+                        this.size = Math.random() * 2 + 1;
+                    }
+                    update() {
+                        this.x += this.vx; this.y += this.vy;
+                        if (this.x < 0 || this.x > width) this.vx *= -1;
+                        if (this.y < 0 || this.y > height) this.vy *= -1;
+                        let dx = mouse.x - this.x; let dy = mouse.y - this.y;
+                        let distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < 120) {
+                            this.vx -= (dx/distance) * 0.02; this.vy -= (dy/distance) * 0.02; // Gentle repel
+                        }
+                    }
+                    draw() { ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, 0.6)`; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
+                }
+                const init = () => { resize(); particles = []; for (let i = 0; i < 50; i++) particles.push(new Particle()); };
+                const animate = () => {
+                    ctx.clearRect(0, 0, width, height);
+                    for (let a = 0; a < particles.length; a++) {
+                        for (let b = a; b < particles.length; b++) {
+                            let dx = particles[a].x - particles[b].x; let dy = particles[a].y - particles[b].y;
+                            let dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < 100) {
+                                ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${1 - dist/100})`;
+                                ctx.lineWidth = 0.5; ctx.beginPath(); ctx.moveTo(particles[a].x, particles[a].y); ctx.lineTo(particles[b].x, particles[b].y); ctx.stroke();
+                            }
+                        }
+                    }
+                    particles.forEach(p => { p.update(); p.draw(); });
+                    requestAnimationFrame(animate);
+                };
+                window.addEventListener('resize', resize);
+                window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+                init(); animate();
+                return () => window.removeEventListener('resize', resize);
+            }, [isDark]);
+            return <><canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full -z-10" /><div className="cyber-grid"></div></>;
+        };
+
+        const Typewriter = ({ phrases, isDark }) => {
+            const [text, setText] = useState('');
+            const [isDeleting, setIsDeleting] = useState(false);
+            const [loopNum, setLoopNum] = useState(0);
+            const [typingSpeed, setTypingSpeed] = useState(100);
+            useEffect(() => {
+                const handleType = () => {
+                    const i = loopNum % phrases.length;
+                    const fullText = phrases[i];
+                    setText(isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1));
+                    setTypingSpeed(isDeleting ? 40 : 100);
+                    if (!isDeleting && text === fullText) setTimeout(() => setIsDeleting(true), 2000);
+                    else if (isDeleting && text === '') { setIsDeleting(false); setLoopNum(loopNum + 1); }
+                };
+                const timer = setTimeout(handleType, typingSpeed);
+                return () => clearTimeout(timer);
+            }, [text, isDeleting, loopNum, phrases, typingSpeed]);
+            return <span className={`font-mono text-xl md:text-2xl font-bold ${isDark ? 'text-matrix-accent' : 'text-corp-accent'}`}>{text}<span className="animate-pulse">_</span></span>;
+        };
+
+        // --- LAYOUT COMPONENTS ---
+        const Sidebar = ({ user, isDark, activeTab, scrollToSection, t }) => {
+            const navItems = [
+                { id: 'home', label: t.nav.home, icon: HomeIcon },
+                { id: 'projects', label: t.nav.projects, icon: ChipIcon },
+                { id: 'achievements', label: t.nav.achievements, icon: TrophyIcon },
+            ];
+            return (
+                <div className={`hidden md:flex flex-col w-64 h-screen fixed left-0 top-0 glass-panel border-r ${isDark ? 'border-matrix-accent/30' : 'border-corp-accent/30'} z-40 transition-colors duration-300`}>
+                    <div className="p-6 flex flex-col items-center border-b border-gray-700/30">
+                        <div className={`w-24 h-24 rounded-full p-1 border-2 border-dashed ${isDark ? 'border-matrix-accent' : 'border-corp-accent'} mb-4 animate-spin-slow`}>
+                            <div className="w-full h-full rounded-full overflow-hidden bg-gray-900">
+                                <SmartImage src={user.photo} alt={user.name} className="w-full h-full" />
+                            </div>
+                        </div>
+                        <h2 className={`font-bold text-lg text-center glitch-wrapper mb-2 ${isDark ? 'text-white' : 'text-gray-800'}`}>
+                            <span className={isDark ? "glitch" : ""} data-text={user.name}>{user.name}</span>
+                        </h2>
+                        <div className={`text-xs font-mono px-2 py-1 rounded border flex items-center gap-2 ${isDark ? 'border-green-500 text-green-500 bg-green-500/10' : 'border-blue-500 text-blue-500 bg-blue-500/10'}`}>
+                            <span className="w-2 h-2 rounded-full bg-current animate-pulse"></span> {t.systemStatus}
+                        </div>
+                    </div>
+                    <nav className="flex-1 py-6 px-4 space-y-2">
+                        {navItems.map(item => (
+                            <button key={item.id} onClick={() => scrollToSection(item.id)} className={`w-full flex items-center gap-3 px-4 py-3 rounded transition-all duration-300 interactive ${activeTab === item.id ? (isDark ? 'bg-matrix-accent/20 text-matrix-accent border border-matrix-accent/50 shadow-[0_0_10px_rgba(0,255,136,0.2)]' : 'bg-corp-accent/20 text-corp-accent border border-corp-accent/50') : (isDark ? 'hover:bg-gray-800 text-gray-400' : 'hover:bg-gray-200 text-gray-600')}`}>
+                                <item.icon /> {item.label}
+                            </button>
+                        ))}
+                    </nav>
+                    <div className="p-6 border-t border-gray-700/30 flex justify-center gap-4">
+                        <a href={user.linkedin} target="_blank" aria-label="LinkedIn" className={`interactive hover:scale-110 transition-transform ${isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-blue-600'}`}><LinkedinIcon /></a>
+                        <a href={user.github} target="_blank" aria-label="GitHub" className={`interactive hover:scale-110 transition-transform ${isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black'}`}><GithubIcon /></a>
+                        <a href={`mailto:${user.email}`} aria-label="Email" className={`interactive hover:scale-110 transition-transform ${isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-red-500'}`}><MailIcon /></a>
+                    </div>
+                </div>
+            );
+        };
+
+        const BottomNav = ({ user, isDark, activeTab, scrollToSection, t }) => {
+            const navItems = [
+                { id: 'home', label: t.nav.home, icon: HomeIcon },
+                { id: 'projects', label: t.nav.projects, icon: ChipIcon },
+                { id: 'achievements', label: t.nav.achievements, icon: TrophyIcon },
+            ];
+            return (
+                <div className={`md:hidden fixed bottom-0 left-0 w-full h-16 bottom-nav flex items-center justify-between px-6 z-50 ${isDark ? 'bg-black/90' : 'bg-white/90'}`}>
+                    <div className={`font-mono font-bold text-sm glitch-wrapper ${isDark ? 'text-matrix-accent' : 'text-corp-accent'}`}>
+                         <span className={isDark ? "glitch" : ""} data-text={user.shortName}>{user.shortName}</span>
+                    </div>
+                    <div className="flex gap-4">
+                        {navItems.map(item => (
+                            <button key={item.id} onClick={() => scrollToSection(item.id)} aria-label={item.label} className={`p-2 rounded-full transition-all duration-300 interactive ${activeTab === item.id ? (isDark ? 'text-matrix-accent bg-matrix-accent/10 scale-110' : 'text-corp-accent bg-corp-accent/10 scale-110') : 'text-gray-500'}`}>
+                                <item.icon />
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const TopRightControls = ({ isDark, toggleTheme, lang, toggleLang }) => (
+            <div className="absolute top-4 right-4 z-50 flex gap-2">
+                <button onClick={toggleLang} aria-label="Toggle Language" className={`interactive px-3 py-1.5 rounded font-mono text-xs font-bold border transition-all ${isDark ? 'bg-matrix-accent/10 border-matrix-accent text-matrix-accent' : 'bg-corp-accent/10 border-corp-accent text-corp-accent'}`}>{lang.toUpperCase()}</button>
+                <button onClick={toggleTheme} aria-label="Toggle Theme" className={`interactive p-1.5 rounded border transition-all ${isDark ? 'bg-matrix-accent/20 border-matrix-accent text-matrix-accent' : 'bg-corp-accent/10 border-corp-accent text-corp-accent'}`}>{isDark ? <SunIcon /> : <MoonIcon />}</button>
+            </div>
+        );
+
+        // --- SECTIONS ---
+        const HomeSection = ({ user, isDark, t }) => (
+            <div className="min-h-[calc(100vh-4rem)] md:min-h-screen flex flex-col justify-center animate-fade-in py-10 md:py-0">
+                <div className="glass-panel p-6 md:p-10 rounded-2xl relative overflow-hidden">
+                    <div className="scanline"></div>
+                    <div className="relative z-10">
+                        <p className={`font-mono text-xs md:text-sm tracking-widest mb-2 ${isDark ? 'text-matrix-accent' : 'text-corp-accent'}`}>SYSTEM_IDENTITY: {user.name.toUpperCase()}</p>
+                        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 glitch-wrapper leading-tight">
+                            <span className={isDark ? "glitch" : ""} data-text={t.headline}>{t.headline}</span>
+                        </h1>
+                        <div className="h-1 w-20 bg-gradient-to-r from-transparent via-current to-transparent opacity-50 mb-6"></div>
+                        <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4 mb-4">
+                            <span className="opacity-70 text-base md:text-lg">{t.introPrefix}</span>
+                            <Typewriter phrases={t.roles} isDark={isDark} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+
+        const ProjectsSection = ({ projects, isDark, t }) => (
+             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-fade-in">
+                {projects.map((proj, idx) => (
+                    <TiltCard key={idx} className={`glass-panel p-6 rounded-xl h-full flex flex-col transition-all duration-300 group hover:-translate-y-1 ${isDark ? 'hover:shadow-[0_0_20px_rgba(0,255,136,0.15)] border-gray-800' : 'hover:shadow-lg border-gray-200'}`}>
+                        <div className="flex justify-between items-start mb-4">
+                            <h3 className={`font-bold text-lg leading-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>{proj.title}</h3>
+                            <ChipIcon className={`w-5 h-5 flex-shrink-0 ${isDark ? 'text-matrix-accent' : 'text-corp-accent'}`} />
+                        </div>
+                        <div className="flex flex-wrap gap-2 mb-4 pb-3 border-b border-gray-500/20">
+                            {proj.tech.split(',').map((tech, i) => (
+                                <span key={i} className={`text-[10px] px-2 py-0.5 rounded-full font-mono border ${isDark ? 'bg-matrix-accent/10 border-matrix-accent/30 text-matrix-accent' : 'bg-corp-accent/10 border-corp-accent/30 text-corp-accent'}`}>
+                                    {tech.trim()}
+                                </span>
+                            ))}
+                        </div>
+                        <div className="space-y-2 text-sm flex-1">
+                            <p><span className={`font-bold ${isDark ? 'text-red-400' : 'text-red-600'}`}>[{t.problemLabel}]</span> {proj.problem}</p>
+                            <p><span className={`font-bold ${isDark ? 'text-yellow-400' : 'text-yellow-600'}`}>[{t.solutionLabel}]</span> {proj.solution}</p>
+                            <p><span className={`font-bold ${isDark ? 'text-matrix-accent' : 'text-green-600'}`}>[{t.resultLabel}]</span> {proj.result}</p>
+                        </div>
+                    </TiltCard>
+                ))}
+            </div>
+        );
+
+        const AchievementsSection = ({ achievements, isDark }) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-fade-in">
+                {achievements.map((item, idx) => (
+                    <TiltCard key={idx} className="glass-panel p-4 rounded-xl flex items-center gap-4 group hover:bg-white/5 transition-colors">
+                        <div className={`w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 border ${isDark ? 'border-gray-700' : 'border-gray-300'}`}>
+                            <SmartImage src={item.image} alt="Medal" className="w-full h-full" />
+                        </div>
+                        <div>
+                            <h4 className={`font-bold text-base ${isDark ? 'text-matrix-accent' : 'text-corp-accent'}`}>{item.title}</h4>
+                            <p className="text-xs opacity-70 mt-1">{item.category}</p>
+                        </div>
+                    </TiltCard>
+                ))}
+            </div>
+        );
+
+        // --- MAIN APP ---
+        const App = () => {
+            const [isDark, setIsDark] = useState(true);
+            const [lang, setLang] = useState('id');
+            const [activeTab, setActiveTab] = useState('home');
+            const t = TRANSLATIONS[lang];
+
+            const toggleTheme = () => {
+                const newVal = !isDark;
+                setIsDark(newVal);
+                document.documentElement.className = newVal ? 'dark' : 'light';
+            };
+            const toggleLang = () => setLang(prev => prev === 'id' ? 'en' : 'id');
+
+            // Optimized Scroll Spy
+            useEffect(() => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) setActiveTab(entry.target.id);
+                    });
+                }, { rootMargin: '-20% 0px -50% 0px' }); // Better trigger points
+
+                document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+                return () => observer.disconnect();
+            }, []);
+
+            const scrollToSection = (id) => {
+                const el = document.getElementById(id);
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+            };
+
+            return (
+                <React.Fragment>
+                    <CustomCursor />
+                    <CyberBackground isDark={isDark} />
+                    <Sidebar user={USER_DATA} isDark={isDark} activeTab={activeTab} scrollToSection={scrollToSection} t={t} />
+                    
+                    <main className="md:ml-64 relative p-4 md:p-8 transition-all duration-300 overflow-hidden">
+                        <TopRightControls isDark={isDark} toggleTheme={toggleTheme} lang={lang} toggleLang={toggleLang} />
+                        <div className="max-w-5xl mx-auto mt-12 md:mt-0 pb-20 md:pb-0">
+                            <section id="home"><HomeSection user={USER_DATA} isDark={isDark} t={t} /></section>
+                            
+                            <section id="projects" className="py-12 md:py-20">
+                                <h2 className={`text-xl md:text-2xl font-bold mb-6 font-mono flex items-center gap-2 ${isDark ? 'text-matrix-accent' : 'text-corp-accent'}`}>
+                                    <ChipIcon /> {t.missionLogs}
+                                </h2>
+                                <ProjectsSection projects={t.projects} isDark={isDark} t={t} />
+                            </section>
+
+                            <section id="achievements" className="py-12 md:py-20">
+                                <h2 className={`text-xl md:text-2xl font-bold mb-6 font-mono flex items-center gap-2 ${isDark ? 'text-matrix-accent' : 'text-corp-accent'}`}>
+                                    <TrophyIcon /> {t.hallOfFame}
+                                </h2>
+                                <AchievementsSection achievements={t.achievements} isDark={isDark} />
+                            </section>
+                        </div>
+                    </main>
+                    <BottomNav user={USER_DATA} isDark={isDark} activeTab={activeTab} scrollToSection={scrollToSection} t={t} />
+                </React.Fragment>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
