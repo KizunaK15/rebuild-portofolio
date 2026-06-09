@@ -29,9 +29,9 @@ Saya mengembangkan mekanisme pemilahan sampah otomatis untuk robot kontes KRTMI.
 
 Kamu bisa menguji kode ini di komputermu.
 
-Langkah 1: Unduh seluruh berkas dari repositori ini.
-Langkah 2: Buka berkas HTML utama melalui peramban web.
-Langkah 3: Sistem mengambil semua dependensi secara langsung melalui jaringan internet. Kamu tidak perlu memasang pustaka secara manual.
+- Langkah 1: Unduh seluruh berkas dari repositori ini.
+- Langkah 2: Buka berkas HTML utama melalui peramban web.
+- Langkah 3: Sistem mengambil semua dependensi secara langsung melalui jaringan internet. Kamu tidak perlu memasang pustaka secara manual.
 
 📫 KOLABORASI DAN KONTAK
 
