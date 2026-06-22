@@ -36,5 +36,12 @@ export const PROJECTS: ProjectSummary[] = [
     problemStatement: "Facilities lacked an automated access control system to manage entry securely.",
     primaryHardware: "RFID Module and Servo",
     resultHighlight: "Deployed a responsive card-based gate system.",
+  },
+  {
+    slug: "airones-tx",
+    title: "KRTMI Robot 2024",
+    problemStatement: "The robotics competition required an autonomous robot capable of precise navigation and real-time object classification.",
+    primaryHardware: "Raspberry Pi 4 and Arduino Due",
+    resultHighlight: "Successfully detected objects via classification.",
   }
-]
+];
