@@ -14,17 +14,23 @@ export async function POST(req: Request): Promise<NextResponse> {
     return NextResponse.json({ errors }, { status: 400 });
   }
 
-  // 3. Send email via Resend
-  try {
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    await resend.emails.send({
-      from: "Portfolio Contact <onboarding@resend.dev>",
-      to: process.env.CONTACT_TO_EMAIL!,
-      subject: `New message from ${body.name}`,
-      react: ContactEmail({ name: body.name, email: body.email, message: body.message }),
-    });
-    return NextResponse.json({ success: true }, { status: 200 });
-  } catch {
-    return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
+// 3. Send email via Resend
+try {
+  const resend = new Resend(process.env.RESEND_API_KEY);
+  const { data, error } = await resend.emails.send({
+    from: "onboarding@resend.dev",
+    to: process.env.CONTACT_TO_EMAIL!,
+    subject: `New message from ${body.name}`,
+    react: ContactEmail({ name: body.name, email: body.email, message: body.message }),
+  });
+
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 400 });
   }
+
+  return NextResponse.json({ success: true, data }, { status: 200 });
+} catch (err) {
+  return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+}
+
 }
