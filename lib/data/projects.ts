@@ -3,51 +3,38 @@ import type { ProjectSummary } from "@/lib/types";
 export const PROJECTS: ProjectSummary[] = [
   {
     slug: "post-stroke-smart-hand",
-    title: "Post Stroke Smart Hand",
-    problemStatement:
-      "Stroke patients lacked affordable, connected rehabilitation tools that track therapy progress and report to their therapists in real time.",
+    title: "Post-Stroke Smart Hand Gloves",
+    problemStatement: "Membantu rehabilitasi pasien pascastroke dengan pemantauan jarak jauh.",
     primaryHardware: "ESP32-S3",
-    resultHighlight: "Won Silver Medal at IIIEX 2025 international invention exhibition.",
-    badgeLabel: "Silver Medal · IIIEX 2025",
+    resultHighlight: "Meraih Silver Medal di IIIEX 2025.",
+    badgeLabel: "Silver Medal IIIEX 2025",
+  },
+  {
+    slug: "ac-servo-trainer-kit",
+    title: "AC Servo Trainer Kit Reconditioning",
+    problemStatement: "Memperbarui kit pelatih servo AC industri untuk aplikasi laboratorium.",
+    primaryHardware: "Mitsubishi MR-J2S-10A",
+    resultHighlight: "Alat laboratorium berfungsi penuh.",
   },
   {
     slug: "water-level-pid-control",
-    title: "Water Level PID Control",
-    problemStatement:
-      "Industrial water tanks required precise level control with minimal overshoot and fast settling time using low-cost hardware.",
+    title: "Water Level Control System Using PID",
+    problemStatement: "Mengendalikan ketinggian air secara otomatis dengan presisi tinggi.",
     primaryHardware: "Arduino Uno",
-    resultHighlight: "Achieved steady-state error under 2.5 mm and overshoot below 2%.",
+    resultHighlight: "Kestabilan kontrol presisi tercapai.",
   },
   {
-    slug: "poultry-climate-controller",
-    title: "Poultry Climate Controller",
-    problemStatement:
-      "Small poultry farms needed automated climate monitoring to reduce manual checks and improve livestock survival rates.",
+    slug: "poultry-farm-monitoring",
+    title: "Automated Poultry Farm Monitoring System",
+    problemStatement: "Mengatur suhu dan kelembapan peternakan unggas secara otomatis.",
     primaryHardware: "ESP32",
-    resultHighlight: "Enabled remote temperature and humidity control via MQTT dashboard.",
+    resultHighlight: "Regulasi suhu otomatis.",
   },
   {
     slug: "rfid-smart-gate",
     title: "RFID Smart Gate System",
-    problemStatement:
-      "Campus buildings lacked an automated access control system that logs entry events and restricts unauthorized personnel.",
-    primaryHardware: "STM32",
-    resultHighlight: "Deployed a card-based gate system with real-time entry logging.",
-  },
-  {
-    slug: "mushroom-iot-monitor",
-    title: "Mushroom IoT Monitor",
-    problemStatement:
-      "Mushroom cultivators needed precise humidity and CO₂ monitoring to maximize yield without continuous manual supervision.",
-    primaryHardware: "ESP32",
-    resultHighlight: "Increased yield consistency by automating environmental feedback control.",
-  },
-  {
-    slug: "stair-climbing-robot",
-    title: "Stair Climbing Robot",
-    problemStatement:
-      "Delivery and inspection robots required a reliable mechanical system to navigate staircase transitions autonomously.",
-    primaryHardware: "Arduino Mega",
-    resultHighlight: "Successfully navigated a 15 cm step height at controlled velocity.",
-  },
+    problemStatement: "Membangun gerbang otomatis responsif menggunakan pemindai fisik.",
+    primaryHardware: "Modul RFID dan Servo",
+    resultHighlight: "Gerbang merespons kartu instan.",
+  }
 ];
