@@ -1,3 +1,4 @@
+import { ImageCaption } from "@/components/mdx/ImageCaption";
 import { getProject, getAllProjects } from '@/lib/mdx';
 import ProjectDetail from '@/components/projects/ProjectDetail';
 import { notFound } from 'next/navigation';

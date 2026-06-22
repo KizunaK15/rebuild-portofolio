@@ -20,6 +20,11 @@ import type {
   ProjectSummary,
 } from "@/lib/types";
 import { calculateReadingTime, countWords } from "@/lib/readingTime";
+import { ImageCaption } from "@/components/mdx/ImageCaption";
+
+const mdxComponents = {
+  ImageCaption,
+};
 
 // ─── Directory constants ─────────────────────────────────────────
 
@@ -238,6 +243,7 @@ export async function getBlogPost(
       const source = await compileMDX({
         source: content,
         options: { parseFrontmatter: false },
+        components: mdxComponents,
       });
 
       return { frontmatter, source };
@@ -297,6 +303,7 @@ export async function getProject(
       const source = await compileMDX({
         source: content,
         options: { parseFrontmatter: false },
+        components: mdxComponents,
       });
 
       return { frontmatter, source };
