@@ -1,0 +1,78 @@
+import type { SkillCategory } from "@/lib/types";
+
+export const SKILL_CATEGORIES: SkillCategory[] = [
+  {
+    id: "embedded-systems",
+    label: "Embedded Systems",
+    icon: "Cpu",
+    skills: [
+      "STM32",
+      "ESP32",
+      "Arduino",
+      "FreeRTOS",
+      "ARM Cortex-M",
+      "UART/SPI/I2C",
+      "PWM Control",
+      "Interrupt Handling",
+    ],
+  },
+  {
+    id: "control-systems",
+    label: "Control Systems",
+    icon: "Activity",
+    skills: [
+      "PID Control",
+      "System Identification",
+      "MATLAB",
+      "Simulink",
+      "State Space",
+      "Transfer Functions",
+      "Root Locus",
+      "Bode Plot",
+    ],
+  },
+  {
+    id: "iot-cloud",
+    label: "IoT & Cloud",
+    icon: "Wifi",
+    skills: [
+      "MQTT",
+      "Firebase",
+      "Node-RED",
+      "REST API",
+      "WebSocket",
+      "ESP-NOW",
+      "HTTP Client",
+      "OTA Updates",
+    ],
+  },
+  {
+    id: "software",
+    label: "Software",
+    icon: "Code",
+    skills: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Python",
+      "C/C++",
+      "Git",
+      "Linux",
+      "Docker",
+    ],
+  },
+  {
+    id: "ai-data",
+    label: "AI & Data",
+    icon: "Brain",
+    skills: [
+      "OpenAI API",
+      "Computer Vision",
+      "LLM Integration",
+      "Data Analytics",
+      "Prompt Engineering",
+      "TensorFlow Lite",
+      "Edge AI",
+    ],
+  },
+];

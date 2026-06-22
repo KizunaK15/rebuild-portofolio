@@ -1,0 +1,40 @@
+---
+title: Post Stroke Smart Hand
+slug: post-stroke-smart-hand
+problemStatement: Stroke patients lacked affordable, connected rehabilitation tools that track therapy progress and report to their therapists in real time.
+approach: Designed a wearable ESP32-S3 glove with flex sensors and servo motors, running LVGL for local UI and Firebase for cloud sync.
+architectureSummary: ESP32-S3 → flex sensors → LVGL display → Firebase Realtime Database → WhatsApp API webhook
+hardwareUsed:
+  - ESP32-S3
+  - Flex Sensors
+  - Servo Motors
+  - LVGL Display
+softwareStack:
+  - C/C++ (ESP-IDF)
+  - Firebase
+  - WhatsApp API
+measurableResults:
+  - Reduced therapist manual reporting time by 80%
+  - Achieved 95% motion accuracy with PID-tuned servo control
+  - Stable operation across 200+ test sessions
+lessonsLearned:
+  - Early sensor calibration planning prevents costly late-stage rework
+  - Firebase real-time sync introduces latency under poor connectivity
+primaryHardware: ESP32-S3
+resultHighlight: Won Silver Medal at IIIEX 2025 international invention exhibition.
+badgeLabel: Silver Medal · IIIEX 2025
+imageUrl: /images/post-stroke.jpg
+dateCreated: 2024-10-01
+---
+
+## Overview
+
+The Post Stroke Smart Hand Gloves help stroke patients regain hand mobility through guided, data-tracked therapy sessions. Unlike off-the-shelf devices, this system gives therapists real-time visibility into every session — eliminating the need for manual note-taking and enabling remote follow-up.
+
+## Technical Approach
+
+The glove uses flex sensors to detect finger extension angles, which feed into a PID servo controller achieving 95% motion accuracy. An LVGL-driven touchscreen displays the current exercise regime, progress, and session history. Session data is pushed to Firebase Realtime Database in near-real-time; a cloud function triggers a WhatsApp API webhook to notify the assigned therapist after each completed session.
+
+## Results
+
+Awarded Silver Medal at the IIIEX 2025 international invention exhibition in recognition of both the clinical utility and engineering quality of the design. Internal trials showed an 80% reduction in therapist manual reporting time and stable device operation across more than 200 consecutive test sessions without hardware failure.

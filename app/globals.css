@@ -1,0 +1,275 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ─────────────────────────────────────────────────────────────────
+   PRIMA PORTFOLIO — DESIGN TOKENS
+   All CSS custom properties are defined here and referenced via
+   Tailwind v4's @theme directive for utility-class generation.
+   ───────────────────────────────────────────────────────────────── */
+
+/* ─── Dark Mode (default) ─── */
+:root {
+  /* Backgrounds */
+  --color-bg-primary:    #0a0f1e;                    /* L≈4% — base page bg */
+  --color-bg-secondary:  #0d1526;                    /* L≈5% — section alt bg */
+  --color-bg-elevated:   #111827;                    /* card background base */
+  --color-bg-glass:      rgba(17, 24, 39, 0.80);     /* glassmorphism fill, opacity ≤ 0.85 */
+
+  /* Accent — indigo */
+  --color-accent:        #6366f1;                    /* indigo-500 */
+  --color-accent-hover:  #4f46e5;                    /* indigo-600 */
+  --color-accent-muted:  rgba(99, 102, 241, 0.15);
+
+  /* Text */
+  --color-text-primary:  #f1f5f9;                    /* slate-100 */
+  --color-text-secondary:#94a3b8;                    /* slate-400 */
+  --color-text-muted:    #64748b;                    /* slate-500 */
+
+  /* Borders */
+  --color-border:        rgba(255, 255, 255, 0.10);
+  --color-border-glass:  rgba(255, 255, 255, 0.12);  /* glassmorphism border, opacity ≤ 0.3 */
+  --color-border-accent: rgba(99, 102, 241, 0.40);
+
+  /* Semantic */
+  --color-success:       #22c55e;
+  --color-error:         #ef4444;
+  --color-warning:       #f59e0b;
+
+  /* Timeline type colors */
+  --color-type-education:    #3b82f6;  /* blue */
+  --color-type-competition:  #f59e0b;  /* amber */
+  --color-type-project:      #10b981;  /* emerald */
+  --color-type-certification:#8b5cf6;  /* violet */
+
+  /* Shadows */
+  --shadow-card:    0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-elevated: 0 10px 30px rgba(0, 0, 0, 0.4);
+  --shadow-glow:    0 0 20px rgba(99, 102, 241, 0.2);
+
+  /* shadcn/ui compatibility tokens */
+  --background: #0a0f1e;
+  --foreground: #f1f5f9;
+  --card: #111827;
+  --card-foreground: #f1f5f9;
+  --popover: #111827;
+  --popover-foreground: #f1f5f9;
+  --primary: #6366f1;
+  --primary-foreground: #f1f5f9;
+  --secondary: #0d1526;
+  --secondary-foreground: #94a3b8;
+  --muted: #0d1526;
+  --muted-foreground: #94a3b8;
+  --accent: #6366f1;
+  --accent-foreground: #f1f5f9;
+  --destructive: #ef4444;
+  --border: rgba(255, 255, 255, 0.10);
+  --input: rgba(255, 255, 255, 0.10);
+  --ring: #6366f1;
+  --radius: 0.75rem;
+
+  /* Sidebar tokens */
+  --sidebar: #111827;
+  --sidebar-foreground: #f1f5f9;
+  --sidebar-primary: #6366f1;
+  --sidebar-primary-foreground: #f1f5f9;
+  --sidebar-accent: #0d1526;
+  --sidebar-accent-foreground: #94a3b8;
+  --sidebar-border: rgba(255, 255, 255, 0.10);
+  --sidebar-ring: #6366f1;
+
+  /* Chart tokens */
+  --chart-1: #6366f1;
+  --chart-2: #10b981;
+  --chart-3: #f59e0b;
+  --chart-4: #3b82f6;
+  --chart-5: #8b5cf6;
+}
+
+/* ─── Light Mode Override ─── */
+[data-theme="light"] {
+  --color-bg-primary:    #f8fafc;
+  --color-bg-secondary:  #f1f5f9;
+  --color-bg-elevated:   #ffffff;
+  --color-bg-glass:      rgba(255, 255, 255, 0.80);
+  --color-text-primary:  #0f172a;                    /* WCAG AA: 16.75:1 on white */
+  --color-text-secondary:#475569;                    /* WCAG AA: 5.7:1 on white */
+  --color-text-muted:    #64748b;                    /* WCAG AA: 4.6:1 on white (large text) */
+  --color-border:        rgba(0, 0, 0, 0.10);
+  --color-border-glass:  rgba(0, 0, 0, 0.08);
+  --color-border-accent: rgba(99, 102, 241, 0.40);
+
+  /* shadcn/ui light overrides */
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --primary: #4f46e5;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+  --muted: #f1f5f9;
+  --muted-foreground: #475569;
+  --accent: #4f46e5;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --border: rgba(0, 0, 0, 0.10);
+  --input: rgba(0, 0, 0, 0.10);
+  --ring: #4f46e5;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #4f46e5;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f1f5f9;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: rgba(0, 0, 0, 0.10);
+  --sidebar-ring: #4f46e5;
+}
+
+/* ─── Tailwind v4 @theme — exposes CSS vars as Tailwind utilities ─── */
+@theme inline {
+  /* Fonts */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Menlo", monospace;
+
+  /* Typography scale */
+  --font-size-display-xl: 3.5rem;
+  --line-height-display-xl: 1.1;
+  --letter-spacing-display-xl: -0.02em;
+
+  --font-size-display-lg: 2.5rem;
+  --line-height-display-lg: 1.15;
+  --letter-spacing-display-lg: -0.02em;
+
+  --font-size-display-md: 2rem;
+  --line-height-display-md: 1.2;
+
+  --font-size-body-lg: 1.125rem;
+  --line-height-body-lg: 1.75;
+
+  --font-size-body-md: 1rem;
+  --line-height-body-md: 1.75;
+
+  --font-size-body-sm: 0.875rem;
+  --line-height-body-sm: 1.6;
+
+  --font-size-label-sm: 0.75rem;
+  --line-height-label-sm: 1;
+  --letter-spacing-label-sm: 0.05em;
+
+  --font-size-code: 0.875rem;
+  --line-height-code: 1.7;
+
+  /* Spacing tokens */
+  --spacing-section-y: 6rem;
+  --spacing-section-y-sm: 4rem;
+  --spacing-card-p: 1.5rem;
+  --spacing-container-max: 1280px;
+
+  /* Color aliases pointing to CSS vars */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--color-accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Portfolio-specific color utilities */
+  --color-bg-primary: var(--color-bg-primary);
+  --color-bg-secondary: var(--color-bg-secondary);
+  --color-bg-elevated: var(--color-bg-elevated);
+  --color-bg-glass: var(--color-bg-glass);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+  --color-success: var(--color-success);
+  --color-error: var(--color-error);
+  --color-warning: var(--color-warning);
+  --color-type-education: var(--color-type-education);
+  --color-type-competition: var(--color-type-competition);
+  --color-type-project: var(--color-type-project);
+  --color-type-certification: var(--color-type-certification);
+
+  /* Radius */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+
+  /* Sidebar */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Charts */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+}
+
+/* ─── Glassmorphism Component ─── */
+.glass-card {
+  background: var(--color-bg-glass);           /* opacity ≤ 0.85 */
+  backdrop-filter: blur(12px);                  /* blur ≥ 8px */
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border-glass); /* opacity ≤ 0.3 */
+  border-radius: var(--radius);
+}
+
+/* ─── Base Layer ─── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-body-md);
+    line-height: var(--line-height-body-md);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code, pre, kbd, samp {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-code);
+    line-height: var(--line-height-code);
+  }
+
+  /* Smooth focus rings */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}

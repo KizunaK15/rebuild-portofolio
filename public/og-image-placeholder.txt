@@ -1,0 +1,17 @@
+OG Image Placeholder
+====================
+
+A 1200×630 PNG image is required at this path: public/og-image.png
+
+Instructions to generate it:
+1. Use a tool like Figma, Canva, or Adobe Photoshop to create a 1200×630px image.
+2. Suggested design:
+   - Background: #0a0f1e (dark navy, matching the portfolio theme)
+   - Title text: "Prima Aji Setyawan" in white, large (e.g. Inter Bold 64px)
+   - Subtitle: "Embedded Systems & IoT Engineer" in slate-400 (#94a3b8), 32px
+   - Accent bar or icon using indigo (#6366f1)
+3. Export as PNG and save to public/og-image.png
+4. Remove this placeholder file once the real image is in place.
+
+Alternatively, use a dynamic OG image route (app/og/route.tsx with @vercel/og)
+for programmatic generation — see: https://vercel.com/docs/functions/og-image-generation
