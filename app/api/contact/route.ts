@@ -29,8 +29,10 @@ try {
   }
 
   return NextResponse.json({ success: true, data }, { status: 200 });
-} catch (err) {
-  return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+} catch (err: unknown) {
+  console.error("API Contact Error:", err);
+  const errorMessage = err instanceof Error ? err.message : "Internal server error";
+  return NextResponse.json({ error: errorMessage }, { status: 500 });
 }
 
 }
