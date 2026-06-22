@@ -1,74 +1,67 @@
 import type { TimelineEntry } from "@/lib/types";
 
-/**
- * EXPERIENCE — all timeline entries sorted by dateRange descending.
- * Covers Education, Competition, Project, and Certification types.
- */
 export const EXPERIENCE: TimelineEntry[] = [
-  // ── Education ────────────────────────────────────────────────────
   {
     type: "Education",
     title: "Politeknik Negeri Semarang",
     subtitle: "D4 Electronics Engineering Technology",
-    dateRange: "2021–2025",
+    dateRange: "2023-Present",
     icon: "GraduationCap",
   },
-
-  // ── Competitions ─────────────────────────────────────────────────
+  {
+    type: "Experience",
+    title: "POLIREVO Polines",
+    subtitle: "Head of KRTMI Division & Programmer",
+    dateRange: "2024-Present",
+    description: "Led the KRTMI robotics division and programmed autonomous and remote-controlled systems for national competitions.",
+    icon: "Users",
+  },
   {
     type: "Competition",
     title: "IIIEX 2025",
-    subtitle: "Silver Medal · Post Stroke Smart Hand",
+    subtitle: "Silver Medal, Post-Stroke Smart Hand",
     dateRange: "2025",
-    description:
-      "Awarded Silver Medal at the International Invention, Innovation and Exposition for AI-assisted stroke rehabilitation glove.",
+    description: "Awarded Silver Medal at the International Invention, Innovation and Exposition for an IoT-assisted rehabilitation glove.",
     icon: "Trophy",
   },
   {
     type: "Competition",
-    title: "Polines Expo 2024",
-    subtitle: "3rd Place · Post Stroke Smart Hand",
+    title: "Polines Elektro Expo 2024",
+    subtitle: "3rd Place, Post-Stroke Smart Hand",
     dateRange: "2024",
-    description:
-      "Secured 3rd Place at the Politeknik Negeri Semarang annual student innovation exhibition.",
+    description: "Secured 3rd Place in the IoT category at the annual student innovation exhibition.",
     icon: "Trophy",
   },
-
-  // ── Projects ─────────────────────────────────────────────────────
   {
     type: "Project",
-    title: "Post Stroke Smart Hand",
-    subtitle: "ESP32-S3 · LVGL · Firebase",
-    dateRange: "2024",
-    description:
-      "Built a wearable rehabilitation glove synchronizing therapy data to the cloud and dispatching session summaries via WhatsApp API.",
-    icon: "Cpu",
-  },
-  {
-    type: "Project",
-    title: "PID Water Level Control",
-    subtitle: "Arduino · VL6180X LIDAR",
-    dateRange: "2023",
-    description:
-      "Implemented a PID controller achieving steady-state error below 2.5 mm and overshoot under 2% on a water tank plant.",
+    title: "Post-Stroke Smart Hand Gloves",
+    subtitle: "ESP32-S3, LVGL, WhatsApp API",
+    dateRange: "2024-2025",
+    description: "Built a wearable rehabilitation glove synchronizing therapy data to the cloud and sending real-time notifications.",
     icon: "Activity",
   },
   {
     type: "Project",
-    title: "Poultry Climate Controller",
-    subtitle: "ESP32 · MQTT · Node-RED",
-    dateRange: "2023",
-    description:
-      "Designed an IoT system maintaining optimal temperature and humidity for poultry farming with remote monitoring.",
-    icon: "Thermometer",
+    title: "AC Servo Trainer Kit Reconditioning",
+    subtitle: "Mitsubishi MR-J2S-10A, PLC",
+    dateRange: "2026",
+    description: "Reconditioned and rewired an industrial AC servo trainer kit for laboratory practical sessions.",
+    icon: "Wrench",
   },
-
-  // ── Certifications ───────────────────────────────────────────────
+  {
+    type: "Project",
+    title: "Transporter Robot",
+    subtitle: "ESP32, PS3 Controller",
+    dateRange: "2024",
+    description: "Developed a holonomic transporter robot controlled via Bluetooth using a PS3 controller for payload delivery.",
+    icon: "Gamepad2",
+  },
   {
     type: "Certification",
-    title: "Google Cloud Platform",
-    subtitle: "Google Skills Boost",
-    dateRange: "2026",
+    title: "Google Cloud Skills Boost",
+    subtitle: "AI Study Jam Season 12",
+    dateRange: "2025-2026",
+    description: "Completed hands-on technical labs focusing on cloud computing, API integration, and generative AI tools.",
     icon: "Award",
   },
 ];
