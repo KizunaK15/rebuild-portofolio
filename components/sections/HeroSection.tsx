@@ -21,8 +21,8 @@ const HERO = {
   badgeLabel: "Silver Medal · IIIEX 2025",
   photoUrl: "/images/prima-profile.jpg",
   photoAlt: "Prima Aji Setyawan — professional photo",
-  githubUrl: "https://github.com/primaaji",
-  linkedinUrl: "https://linkedin.com/in/primaaji",
+  githubUrl: "https://github.com/KizunaK15",
+  linkedinUrl: "https://linkedin.com/in/primaajisetyawan",
   resumeUrl: "/resume.pdf",
 } as const;
 

@@ -39,7 +39,7 @@ export function Footer() {
             </a>
 
             <a
-              href="https://linkedin.com/in/primaaji"
+              href="https://linkedin.com/in/primaajisetyawan"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn profile of Prima Aji Setyawan"
