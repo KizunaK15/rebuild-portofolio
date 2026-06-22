@@ -1,3 +1,5 @@
+"use client";
+
 import {
   GraduationCap,
   Trophy,
@@ -5,19 +7,18 @@ import {
   Award,
   Activity,
   Thermometer,
-  Users, // <-- Ikon baru ditambahkan di sini
+  Users,
   type LucideIcon,
 } from "lucide-react";
+import { motion } from "framer-motion";
 import type { TimelineEntryType, TimelineEntry } from "@/lib/types";
 import { EXPERIENCE } from "@/lib/data/experience";
 
-// ─── Type metadata ────────────────────────────────────────────────
-
 interface TypeMeta {
-  color: string;         // CSS custom property value
-  bgColor: string;       // translucent fill for icon bg
-  borderColor: string;   // border for icon ring
-  label: string;         // badge text
+  color: string;
+  bgColor: string;
+  borderColor: string;
+  label: string;
 }
 
 const TYPE_META: Record<TimelineEntryType, TypeMeta> = {
@@ -53,8 +54,6 @@ const TYPE_META: Record<TimelineEntryType, TypeMeta> = {
   },
 };
 
-// ─── Icon resolver ────────────────────────────────────────────────
-
 const ICON_MAP: Record<string, LucideIcon> = {
   GraduationCap,
   Trophy,
@@ -62,19 +61,16 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Award,
   Activity,
   Thermometer,
-  Users, // <-- Didaftarkan ke dalam map
+  Users,
 };
 
-/** Fallback icon defaults per type */
 const TYPE_DEFAULT_ICON: Record<TimelineEntryType, LucideIcon> = {
   Education: GraduationCap,
-  Experience: Users, // <-- Ditetapkan sebagai ikon bawaan
+  Experience: Users,
   Competition: Trophy,
   Project: Cpu,
   Certification: Award,
 };
-
-// ─── Icon resolver ────────────────────────────────────────────────
 
 function renderIcon(entry: TimelineEntry) {
   const IconComponent = (entry.icon && ICON_MAP[entry.icon]) 
@@ -83,8 +79,6 @@ function renderIcon(entry: TimelineEntry) {
 
   return <IconComponent size={18} strokeWidth={1.75} />;
 }
-
-// ─── Sub-components ───────────────────────────────────────────────
 
 function TypeBadge({ type }: { type: TimelineEntryType }) {
   const meta = TYPE_META[type];
@@ -128,8 +122,13 @@ function TimelineItem({
   isLast: boolean;
 }) {
   return (
-    <li className="relative flex gap-4">
-      {/* Vertical connector line (hidden for last item) */}
+    <motion.li 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="relative flex gap-4"
+    >
       {!isLast && (
         <div
           className="absolute left-5 top-10 bottom-0 w-px"
@@ -138,15 +137,12 @@ function TimelineItem({
         />
       )}
 
-      {/* Icon bubble */}
       <TimelineIconBubble entry={entry} />
 
-      {/* Card content */}
       <div
         className="flex-1 pb-8 glass-card p-4 rounded-xl"
         style={{ border: "1px solid var(--color-border-glass)" }}
       >
-        {/* Top row: badge + date */}
         <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
           <TypeBadge type={entry.type} />
           <time
@@ -157,7 +153,6 @@ function TimelineItem({
           </time>
         </div>
 
-        {/* Title */}
         <h3
           className="font-semibold text-base leading-snug"
           style={{ color: "var(--color-text-primary)" }}
@@ -165,7 +160,6 @@ function TimelineItem({
           {entry.title}
         </h3>
 
-        {/* Subtitle */}
         <p
           className="text-sm mt-0.5"
           style={{ color: "var(--color-text-secondary)" }}
@@ -173,7 +167,6 @@ function TimelineItem({
           {entry.subtitle}
         </p>
 
-        {/* Optional description */}
         {entry.description && (
           <p
             className="text-sm mt-2 leading-relaxed"
@@ -183,19 +176,10 @@ function TimelineItem({
           </p>
         )}
       </div>
-    </li>
+    </motion.li>
   );
 }
 
-// ─── ExperienceSection ────────────────────────────────────────────
-
-/**
- * ExperienceSection — vertical timeline of education, competitions,
- * projects, and certifications. Server Component.
- *
- * - id="experience" for scroll-spy / nav link targets
- * - aria-label for landmark accessibility
- */
 export function ExperienceSection() {
   return (
     <div
@@ -204,7 +188,6 @@ export function ExperienceSection() {
       style={{ backgroundColor: "var(--color-bg-secondary)" }}
     >
       <div className="mx-auto max-w-[var(--spacing-container-max)] px-4 sm:px-6 lg:px-8">
-        {/* Section heading */}
         <header className="mb-12">
           <h2
             className="text-[var(--font-size-display-md)] font-bold tracking-tight"
@@ -221,7 +204,6 @@ export function ExperienceSection() {
           </p>
         </header>
 
-        {/* Timeline list */}
         <ol aria-label="Timeline entries" className="flex flex-col gap-0">
           {EXPERIENCE.map((entry, idx) => (
             <TimelineItem
