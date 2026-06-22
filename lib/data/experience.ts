@@ -10,7 +10,7 @@ export const EXPERIENCE: TimelineEntry[] = [
   },
   {
     type: "Experience",
-    title: "POLIREVO Polines",
+    title: "POLIREVO",
     subtitle: "Head of KRTMI Division & Programmer",
     dateRange: "2024-Present",
     description: "Led the KRTMI robotics division and programmed autonomous and remote-controlled systems for national competitions.",
