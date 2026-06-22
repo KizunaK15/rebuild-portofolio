@@ -29,7 +29,7 @@ export function Footer() {
           {/* Social links */}
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com/primaaji"
+              href="https://github.com/KizunaK15"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub profile of Prima Aji Setyawan"
