@@ -5,6 +5,7 @@ import {
   Award,
   Activity,
   Thermometer,
+  Users, // <-- Ikon baru ditambahkan di sini
   type LucideIcon,
 } from "lucide-react";
 import type { TimelineEntryType, TimelineEntry } from "@/lib/types";
@@ -25,6 +26,12 @@ const TYPE_META: Record<TimelineEntryType, TypeMeta> = {
     bgColor: "rgba(59, 130, 246, 0.12)",
     borderColor: "rgba(59, 130, 246, 0.30)",
     label: "Education",
+  },
+  Experience: {
+    color: "#10b981",
+    bgColor: "rgba(16, 185, 129, 0.12)",
+    borderColor: "rgba(16, 185, 129, 0.3)",
+    label: "Experience",
   },
   Competition: {
     color: "var(--color-type-competition)",
@@ -55,11 +62,13 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Award,
   Activity,
   Thermometer,
+  Users, // <-- Didaftarkan ke dalam map
 };
 
 /** Fallback icon defaults per type */
 const TYPE_DEFAULT_ICON: Record<TimelineEntryType, LucideIcon> = {
   Education: GraduationCap,
+  Experience: Users, // <-- Ditetapkan sebagai ikon bawaan
   Competition: Trophy,
   Project: Cpu,
   Certification: Award,

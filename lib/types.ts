@@ -64,7 +64,7 @@ export interface Achievement{
     height: number
 }
 
-export type TimelineEntryType = "Education" | "Competition" | "Project" | "Certification"
+export type TimelineEntryType = "Education"| "Experience" | "Competition" | "Project" | "Certification"
 
 export interface TimelineEntry {
     type: TimelineEntryType
