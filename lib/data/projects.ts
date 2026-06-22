@@ -24,11 +24,11 @@ export const PROJECTS: ProjectSummary[] = [
     resultHighlight: "Achieved precise stability and control.",
   },
   {
-    slug: "poultry-farm-monitoring",
-    title: "Automated Poultry Farm Monitoring System",
-    problemStatement: "Poultry farms needed automated climate monitoring to reduce manual checks and regulate temperature.",
-    primaryHardware: "ESP32",
-    resultHighlight: "Enabled automatic temperature regulation.",
+    slug: "transporter-robot",
+    title: "Transporter Robot",
+    problemStatement: "Operators needed a reliable remote-controlled robot to move payloads between zones accurately.",
+    primaryHardware: "ESP32 and PS3 Controller",
+    resultHighlight: "Successfully transported payloads using a PS3 controller.",
   },
   {
     slug: "rfid-smart-gate",

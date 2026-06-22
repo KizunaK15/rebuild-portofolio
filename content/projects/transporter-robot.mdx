@@ -1,0 +1,34 @@
+---
+title: Transporter Robot
+slug: transporter-robot
+problemStatement: Operators needed a reliable remote-controlled robot to move payloads between zones accurately.
+approach: Integrated a PS3 controller with an ESP32 via Bluetooth to achieve manual omni-directional trajectory control.
+architectureSummary: The ESP32 processes wireless commands from the PS3 controller and sends signals to motor drivers for precise maneuvering.
+hardwareUsed:
+  - ESP32
+  - PS3 Controller
+  - Omni Wheels
+  - Motor Drivers
+softwareStack:
+  - C/C++
+  - ESP32 PS3 Controller Library
+measurableResults:
+  - Achieved zero latency wireless control within the arena
+  - Transported payloads to target zones successfully
+lessonsLearned:
+  - Mapping controller analog sticks to omni-directional kinematic equations
+  - Managing Bluetooth connectivity and power stability on ESP32
+primaryHardware: ESP32 and PS3 Controller
+resultHighlight: Successfully transported payloads via PS3 controller
+dateCreated: 2024-06-01
+---
+
+<ImageCaption 
+  src="/images/transporter-robot.jpeg" 
+  width={800} 
+  height={500} 
+/>
+
+Robot transporter ini menggunakan sistem penggerak roda omni untuk bermanuver ke segala arah. 
+
+Sistem menggunakan ESP32 sebagai pengontrol utama. ESP32 membaca sinyal masukan dari kontroler PS3 melalui koneksi Bluetooth. Mikrokontroler tersebut mengirimkan perintah ke penggerak motor untuk mengatur arah dan kecepatan robot saat memindahkan muatan di arena kompetisi.
