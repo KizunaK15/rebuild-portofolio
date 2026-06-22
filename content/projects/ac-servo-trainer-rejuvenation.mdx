@@ -1,18 +1,21 @@
 ---
-title: Rejuvenating the ED-4270M AC Servo Trainer Kit
-slug: ac-servo-trainer-rejuvenation
-datePublished: 2026-04-10
-dateModified: 2026-04-10
-category: Control Systems
-description: Technical notes on configuring and wiring the Mitsubishi MRJ2S10A unit for laboratory use.
-tags:
-  - AC Servo
-  - Mitsubishi
-  - Hardware Wiring
-published: true
-readingTimeMinutes: 4
+title: AC Servo Trainer Kit Reconditioning
+slug: ac-servo-trainer-kit
+problemStatement: Memperbarui kit pelatih servo AC industri untuk aplikasi laboratorium
+approach: Melakukan pengkabelan ulang dan pengaturan parameter untuk unit servo Mitsubishi
+architectureSummary: Menggunakan kit pelatih ED-4270M dan unit servo Mitsubishi MR-J2S-10A untuk validasi kinerja
+hardwareUsed:
+  - Mitsubishi MR-J2S-10A
+  - ED-4270M Trainer Kit
+  - PLC
+softwareStack:
+  - PLC Programming
+measurableResults:
+  - Alat berfungsi penuh untuk praktikum laboratorium
+lessonsLearned:
+  - Pemecahan masalah perangkat keras industri
+  - Kalibrasi sistem kontrol motor
+primaryHardware: Mitsubishi MR-J2S-10A
+resultHighlight: Alat laboratorium berfungsi penuh
+dateCreated: 2026-02-01
 ---
-
-Rejuvenating the ED-4270M trainer kit requires precise wiring, specifically when integrating the Mitsubishi MRJ2S10A servo unit. The I/O pin configuration on this unit is strict, and a minor routing error can trigger system faults.
-
-You must connect the control pins exactly as specified in the datasheet to interface properly with the main controller. Grounding the encoder and power cables correctly is also critical to eliminate electromagnetic interference (EMI). Securing these connections prevents calibration errors during the motor's initial startup sequence.
