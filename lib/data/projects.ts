@@ -36,5 +36,13 @@ export const PROJECTS: ProjectSummary[] = [
     problemStatement: "The robotics competition required an autonomous robot capable of precise navigation and real-time object classification.",
     primaryHardware: "Raspberry Pi 4 and Arduino Due",
     resultHighlight: "Successfully detected objects via classification.",
-  }
+  },
+  {
+    slug: "line follower transporter-robot",
+    title: "Line Follower Transporter Robot",
+    problemStatement: "Autonomous robots needed to follow lines accurately for efficient payload transportation.",
+    primaryHardware: "ESP32",
+    resultHighlight: "Successfully transported payloads autonomously.",
+    imageUrl: "/images/Line Follower Transporter Robot.jpeg",
+  },
 ];

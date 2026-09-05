@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Award } from "lucide-react";
+import Image from "next/image";
 import { cardHover } from "@/components/animations/motionVariants";
 import type { ProjectSummary } from "@/lib/types";
 
@@ -19,6 +20,7 @@ export function ProjectCard({
   primaryHardware,
   resultHighlight,
   badgeLabel,
+  imageUrl,
 }: ProjectCardProps) {
   return (
     <Link
@@ -46,6 +48,20 @@ export function ProjectCard({
           >
             <Award size={12} aria-hidden="true" />
             {badgeLabel}
+          </div>
+        )}
+
+        {/* Project Image */}
+        {imageUrl && (
+          <div className="mb-4">
+            <Image
+              src={imageUrl}
+              alt={`${title} project image`}
+              className="rounded-lg shadow-lg"
+              width={300}
+              height={200}
+              style={{ objectFit: 'cover' }}
+            />
           </div>
         )}
 

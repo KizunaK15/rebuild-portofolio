@@ -1,5 +1,6 @@
 import { ProjectFrontmatter } from '@/lib/types';
 import { ReactNode } from 'react';
+import Image from 'next/image';
 
 interface ProjectDetailProps {
   project: {
@@ -23,7 +24,20 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
         )}
         <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-100">{frontmatter.title}</h1>
         <p className="mb-6 text-xl text-slate-400">{frontmatter.problemStatement}</p>
-        
+
+        {frontmatter.imageUrl && (
+          <div className="mb-8">
+            <Image
+              src={frontmatter.imageUrl}
+              alt={`${frontmatter.title} project image`}
+              className="rounded-lg shadow-lg"
+              width={800}
+              height={400}
+              style={{ objectFit: 'cover' }}
+            />
+          </div>
+        )}
+
         <div className="mb-8 flex flex-wrap gap-2">
           {frontmatter.hardwareUsed?.map((hw: string) => (
             <span key={hw} className="rounded bg-slate-800 px-2 py-1 font-mono text-xs text-slate-300">

@@ -1,0 +1,38 @@
+---
+title: Line Follower Transporter Robot
+slug: line follower transporter-robot
+problemStatement: Autonomous robots needed to follow lines accurately for efficient payload transportation.
+approach: Implemented a PID-controlled line following algorithm using IR sensors and ESP32 to enable autonomous navigation along predefined paths.
+architectureSummary: The ESP32 reads data from multiple IR sensors, processes it with a PID controller to adjust motor speeds, and maintains the robot on the line while transporting payloads.
+hardwareUsed:
+  - ESP32
+  - IR Sensor Array
+  - DC Motors with Motor Drivers
+  - Chassis with Line Following Sensor Mount
+softwareStack:
+  - C/C++
+  - ESP32 Arduino Core
+measurableResults:
+  - Achieved stable line following at speeds up to 0.5 m/s
+  - Successfully transported payloads of up to 500g along curved paths
+  - Zero manual intervention required during autonomous runs
+lessonsLearned:
+  - Tuning PID parameters for varying surface conditions and payload weights
+  - Sensor calibration and placement critical for reliable line detection
+  - Power management important for consistent motor performance
+primaryHardware: ESP32
+resultHighlight: Successfully transported payloads autonomously.
+badgeLabel: Silver Medal IIIEX 2025
+imageUrl: /images/Line Follower Transporter Robot.jpeg
+dateCreated: 2024-08-15
+---
+
+<ImageCaption 
+  src="/images/Line Follower Transporter Robot.jpeg" 
+  width={800} 
+  height={500}
+/>
+
+Line follower transporter robot adalah robot otonom yang dirancang untuk mengikuti garis dengan precisi sambil mengangkut muetan dari satu titik ke titik lain. Robot ini menggunakan array sensor inframerah untuk mendeteksi posisi garis dan mikrokontroler ESP32 untuk mengendalikan kecepatan motor berdasarkan algoritma PID.
+
+Sistem kontrol dirancang agar robot dapat tetap berada pada garis bahkan ketika terjadi perubahan kondisi superficie atau beban yang berbeda. Dengan integrasi antara sensor, algoritma kontrol, dan aktuator, robot ini mampu melakukan tugas transporte Secara otonom tanpa intervensi manusia.
