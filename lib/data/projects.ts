@@ -4,13 +4,11 @@ export const PROJECTS: ProjectSummary[] = [
   {
     slug: "post-stroke-smart-hand",
     title: "Post Stroke Smart Hand",
-    // â‰¤ 30 words âœ“ (24 words)
     problemStatement:
       "Stroke patients lacked affordable, connected rehabilitation tools that track therapy progress and report to their therapists in real time.",
     primaryHardware: "ESP32-S3",
-    // â‰¤ 20 words âœ“ (11 words)
     resultHighlight: "Won Silver Medal at IIIEX 2025 international invention exhibition.",
-    badgeLabel: "Silver Medal Â· IIIEX 2025",   // uses Â· separator per spec
+    badgeLabel: "Silver Medal \u00b7 IIIEX 2025",
     imageUrl: "/images/post-stroke.jpg",
   },
   {
@@ -41,7 +39,7 @@ export const PROJECTS: ProjectSummary[] = [
     slug: "mushroom-iot-monitor",
     title: "Mushroom IoT Monitor",
     problemStatement:
-      "Mushroom cultivators needed precise humidity and COâ‚‚ monitoring to maximize yield without continuous manual supervision.",
+      "Mushroom cultivators needed precise humidity and CO\u2082 monitoring to maximize yield without continuous manual supervision.",
     primaryHardware: "ESP32",
     resultHighlight: "Increased yield consistency by automating environmental feedback control.",
   },
@@ -53,5 +51,13 @@ export const PROJECTS: ProjectSummary[] = [
     primaryHardware: "Arduino Mega",
     resultHighlight: "Successfully navigated a 15 cm step height at controlled velocity.",
   },
+  {
+    slug: "line-follower-transporter-robot",
+    title: "Line Follower Transporter Robot",
+    problemStatement:
+      "Autonomous material transport required a low-cost robot that follows a fixed path and delivers payloads without operator intervention.",
+    primaryHardware: "ESP32",
+    resultHighlight: "Completed autonomous payload delivery across a 5-meter track without line deviation.",
+    imageUrl: "/images/line-follower-transporter-robot.jpeg",
+  },
 ];
-
