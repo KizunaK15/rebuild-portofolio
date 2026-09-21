@@ -3,7 +3,7 @@ export interface BlogFrontmatter {
     slug: string
     datePublished: string
     dateModified: string
-    category:"Embedded Systems" | "IoT" | "AI Integration" | "Control System"
+    category: "Embedded Systems" | "IoT" | "AI Integration" | "Control Systems"
     description: string
     tags: string[]
     published: boolean
@@ -18,12 +18,12 @@ export interface ProjectFrontmatter {
     architectureSummary: string
     hardwareUsed: string[]
     softwareStack: string[]
-    measurableResult: string[]
+    measurableResults: string[]   // fixed: was measurableResult (singular)
     lessonsLearned: string[]
     primaryHardware: string
     resultHighlight: string
     badgeLabel?: string
-    imageUrl: string
+    imageUrl?: string             // fixed: now optional to match ProjectSummary
     dateCreated: string
 }
 
@@ -64,7 +64,7 @@ export interface Achievement{
     height: number
 }
 
-export type TimelineEntryType = "Education"| "Experience" | "Competition" | "Project" | "Certification"
+export type TimelineEntryType = "Education" | "Competition" | "Project" | "Certification"
 
 export interface TimelineEntry {
     type: TimelineEntryType

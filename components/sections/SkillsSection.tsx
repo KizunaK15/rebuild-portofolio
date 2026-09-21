@@ -2,18 +2,11 @@ import { Cpu, Activity, Wifi, Code, Brain, type LucideProps } from "lucide-react
 import { SKILL_CATEGORIES } from "@/lib/data/skills";
 import type { SkillCategory } from "@/lib/types";
 
-// ─── Icon map ────────────────────────────────────────────────────
 type IconComponent = React.ComponentType<LucideProps>;
 
-const ICON_MAP: Record<string, IconComponent> = {
-  Cpu,
-  Activity,
-  Wifi,
-  Code,
-  Brain,
-};
+const ICON_MAP: Record<string, IconComponent> = { Cpu, Activity, Wifi, Code, Brain };
 
-// ─── Card ─────────────────────────────────────────────────────────
+// ─── SkillCard ────────────────────────────────────────────────────
 
 function SkillCard({ category }: { category: SkillCategory }) {
   const Icon = ICON_MAP[category.icon];
@@ -21,37 +14,43 @@ function SkillCard({ category }: { category: SkillCategory }) {
   return (
     <div
       className={[
-        "glass-card p-6 group",
+        "glass-card p-5",
+        // Hover/focus-within: border + glow — 175ms (Req 9.7)
         "border border-[var(--color-border-glass)]",
         "transition-all duration-[175ms]",
         "hover:border-[var(--color-border-accent)] hover:shadow-[var(--shadow-glow)]",
-        "focus-within:border-[var(--color-border-accent)]",
+        "focus-within:border-[var(--color-border-accent)] focus-within:shadow-[var(--shadow-glow)]",
       ].join(" ")}
     >
-      {/* Category header */}
-      <div className="flex items-center gap-2 mb-4">
+      {/* Header: icon + label */}
+      <div className="flex items-center gap-2 mb-3">
         {Icon && (
           <Icon
-            size={18}
+            size={16}
             aria-hidden="true"
-            className="text-[var(--color-accent)] shrink-0"
+            className="shrink-0"
+            style={{ color: "var(--color-accent)" }}
           />
         )}
-        <span className="font-semibold text-sm text-[var(--color-text-primary)]">
+        <span
+          className="font-semibold text-sm leading-none"
+          style={{ color: "var(--color-text-primary)" }}
+        >
           {category.label}
         </span>
       </div>
 
-      {/* Skill tags */}
-      <div className="flex flex-wrap gap-2">
+      {/* Skill tags — flex-wrap, never overflow (Req 9.9) */}
+      <div className="flex flex-wrap gap-1.5" role="list" aria-label={`${category.label} skills`}>
         {category.skills.map((skill) => (
           <span
             key={skill}
-            className={[
-              "text-xs px-2 py-1 rounded",
-              "text-[var(--color-text-secondary)]",
-              "bg-[var(--color-bg-elevated)]",
-            ].join(" ")}
+            role="listitem"
+            className="text-xs px-2 py-0.5 rounded"
+            style={{
+              color: "var(--color-text-secondary)",
+              backgroundColor: "var(--color-bg-elevated)",
+            }}
           >
             {skill}
           </span>
@@ -61,25 +60,44 @@ function SkillCard({ category }: { category: SkillCategory }) {
   );
 }
 
-// ─── Section ──────────────────────────────────────────────────────
+// ─── SkillsSection ────────────────────────────────────────────────
 
+/**
+ * SkillsSection — server component.
+ *
+ * Five glassmorphism cards in a responsive grid:
+ *  mobile  → 1 col
+ *  tablet  → 2 col
+ *  desktop → 5 col (one per category)
+ *
+ * No progress bars or percentage ratings. (Req 9.8)
+ */
 export function SkillsSection() {
   return (
-    <div
-      aria-label="Technical skills"
-      className="py-16 px-4"
+    <section
+      id="skills"
+      aria-labelledby="skills-heading"
+      className="py-16 px-4 sm:px-6 lg:px-8"
     >
-      {/* Section heading */}
-      <h2 className="text-2xl font-bold text-[var(--color-text-primary)] mb-8 text-center">
-        Skills
-      </h2>
+      <div className="mx-auto max-w-[1280px]">
+        <h2
+          id="skills-heading"
+          className="text-2xl font-bold mb-2"
+          style={{ color: "var(--color-text-primary)" }}
+        >
+          Skills
+        </h2>
+        <p className="text-sm mb-8" style={{ color: "var(--color-text-secondary)" }}>
+          A cross-domain toolkit spanning hardware, software, and AI.
+        </p>
 
-      {/* Responsive grid: 1 col → 2–3 col → 5 col */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 max-w-[1280px] mx-auto">
-        {SKILL_CATEGORIES.map((category) => (
-          <SkillCard key={category.id} category={category} />
-        ))}
+        {/* Grid — Req 6.6 */}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-5">
+          {SKILL_CATEGORIES.map((category) => (
+            <SkillCard key={category.id} category={category} />
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

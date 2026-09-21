@@ -18,78 +18,33 @@ export const metadata: Metadata = {
 };
 
 /**
- * Home — React Server Component.
+ * Home — React Server Component (no "use client").
  *
- * Assembles all homepage sections in order. Each <section> provides the id
- * used by NavTop / NavBottom scroll-spy and anchor links.
+ * Each section component is self-contained: owns its id, heading,
+ * background color, and padding. This page is a thin assembly shell.
  *
- * Note: several section components (AboutSection, SkillsSection,
- * ExperienceSection, BlogSection) manage their own background and padding
- * internally, so the outer <section> here acts purely as a scroll anchor.
- * Components that don't manage their own spacing receive py-16 padding here.
+ * Section order (Req 15.1):
+ *   Hero → About → Skills → Projects → Achievements → Experience → Blog → Contact
  */
 export default function Home() {
   return (
     <>
       <NavTop />
 
+      {/* SkipLink target (Req 3.7) */}
       <main id="main-content">
-        {/* ── Hero ──────────────────────────────────────────────── */}
+        <HeroSection />
+        <AboutSection />
+        <SkillsSection />
+        <ProjectsSection />
+
+        <AchievementsSection />
+
+        <ExperienceSection />
+        <BlogSection />
+
+        {/* Contact — ContactSection owns its id="contact" internally */}
         <section
-          id="home"
-          className="py-16 px-4 sm:px-6 lg:px-8"
-          aria-label="Hero introduction"
-        >
-          <div className="mx-auto max-w-[1280px]">
-            <HeroSection />
-          </div>
-        </section>
-
-        {/* ── About — component manages its own bg & padding ────── */}
-        <section id="about" aria-label="About">
-          <AboutSection />
-        </section>
-
-        {/* ── Skills — component manages its own padding ─────────── */}
-        <section id="skills" aria-label="Skills">
-          <SkillsSection />
-        </section>
-
-        {/* ── Projects ──────────────────────────────────────────── */}
-        <section
-          id="projects"
-          className="py-16 px-4 sm:px-6 lg:px-8"
-          aria-label="Projects"
-        >
-          <div className="mx-auto max-w-[1280px]">
-            <ProjectsSection />
-          </div>
-        </section>
-
-        {/* ── Achievements ──────────────────────────────────────── */}
-        <section
-          id="achievements"
-          className="py-16 px-4 sm:px-6 lg:px-8"
-          aria-label="Achievements"
-        >
-          <div className="mx-auto max-w-[1280px]">
-            <AchievementsSection />
-          </div>
-        </section>
-
-        {/* ── Experience — component manages its own bg & padding ── */}
-        <section id="experience" aria-label="Experience">
-          <ExperienceSection />
-        </section>
-
-        {/* ── Blog — component manages its own bg & padding ────── */}
-        <section id="blog" aria-label="Blog">
-          <BlogSection />
-        </section>
-
-        {/* ── Contact ──────────────────────────────────────────── */}
-        <section
-          id="contact"
           className="py-16 px-4 sm:px-6 lg:px-8"
           aria-label="Contact"
         >

@@ -1,88 +1,87 @@
-/**
- * BlogSection — server async component.
- *
- * Fetches the three most recent published blog posts via getAllBlogPosts()
- * and renders them as preview cards. Falls back to a friendly message when
- * no posts are available yet.
- */
-
 import Link from "next/link";
 import { getAllBlogPosts } from "@/lib/mdx";
-
-// ── Date formatter (no external library) ─────────────────────────
 
 function formatDate(iso: string): string {
   if (!iso) return "";
   const d = new Date(iso);
-  return d.toLocaleDateString("en-US", {
-    month: "short",
-    day: "2-digit",
-    year: "numeric",
-  });
+  return d.toLocaleDateString("en-US", { month: "short", day: "2-digit", year: "numeric" });
 }
 
-// ── Component ─────────────────────────────────────────────────────
-
+/**
+ * BlogSection — async server component.
+ *
+ * Shows up to 3 most-recent published posts.
+ * Empty state: exactly "Articles coming soon — check back shortly." (Req 13.8)
+ */
 export async function BlogSection() {
   const allPosts = await getAllBlogPosts();
   const posts = allPosts.slice(0, 3);
 
   return (
-    <div
-      aria-label="Latest articles"
-      className="py-24 px-4 bg-[var(--color-bg-primary)]"
+    <section
+      id="blog"
+      aria-labelledby="blog-heading"
+      className="py-16 px-4 sm:px-6 lg:px-8"
     >
       <div className="mx-auto max-w-[1280px]">
-
-        {/* Section heading */}
-        <h2 className="text-3xl font-semibold tracking-tight text-[var(--color-text-primary)] mb-12">
+        <h2
+          id="blog-heading"
+          className="text-2xl font-bold mb-2"
+          style={{ color: "var(--color-text-primary)" }}
+        >
           Latest Articles
         </h2>
 
         {posts.length === 0 ? (
-          <p className="text-[var(--color-text-secondary)]">
+          <p className="mt-6 text-sm" style={{ color: "var(--color-text-secondary)" }}>
             Articles coming soon — check back shortly.
           </p>
         ) : (
-          <ul className="flex flex-col gap-6" role="list">
+          <ul className="mt-8 flex flex-col gap-4" role="list">
             {posts.map((post) => (
               <li
                 key={post.slug}
-                className="rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-6 transition-shadow hover:shadow-[var(--shadow-elevated)]"
+                className="rounded-xl border p-5 transition-shadow"
+                style={{
+                  borderColor: "var(--color-border)",
+                  backgroundColor: "var(--color-bg-elevated)",
+                }}
               >
-                {/* Title link */}
+                {/* Title */}
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="block text-xl font-semibold text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded"
+                  className="block text-base font-semibold transition-colors hover:text-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)] rounded-sm"
+                  style={{ color: "var(--color-text-primary)" }}
                 >
                   {post.title}
                 </Link>
 
-                {/* Meta row */}
-                <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-[var(--color-text-muted)]">
-                  {/* Date */}
-                  <time dateTime={post.datePublished}>
-                    {formatDate(post.datePublished)}
-                  </time>
-
+                {/* Meta */}
+                <div
+                  className="mt-1.5 flex flex-wrap items-center gap-2 text-xs"
+                  style={{ color: "var(--color-text-muted)" }}
+                >
+                  <time dateTime={post.datePublished}>{formatDate(post.datePublished)}</time>
                   <span aria-hidden="true">·</span>
-
-                  {/* Reading time */}
                   <span>{post.readingTimeMinutes} min read</span>
-
                   <span aria-hidden="true">·</span>
-
-                  {/* Category chip */}
+                  {/* Category chip — Req 13.3 */}
                   <span
-                    className="text-xs rounded-full px-2 py-0.5 border border-[var(--color-border-accent)] text-[var(--color-accent)]"
+                    className="rounded-full px-2 py-0.5 border"
+                    style={{
+                      borderColor: "var(--color-border-accent)",
+                      color: "var(--color-accent)",
+                    }}
                   >
                     {post.category}
                   </span>
                 </div>
 
-                {/* Description */}
                 {post.description && (
-                  <p className="mt-3 text-sm text-[var(--color-text-secondary)] leading-relaxed line-clamp-2">
+                  <p
+                    className="mt-2 text-sm leading-relaxed line-clamp-2"
+                    style={{ color: "var(--color-text-secondary)" }}
+                  >
                     {post.description}
                   </p>
                 )}
@@ -90,8 +89,7 @@ export async function BlogSection() {
             ))}
           </ul>
         )}
-
       </div>
-    </div>
+    </section>
   );
 }

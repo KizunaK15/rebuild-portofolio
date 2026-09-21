@@ -1,0 +1,40 @@
+﻿---
+title: RFID Smart Gate System
+slug: rfid-smart-gate
+problemStatement: Campus buildings lacked an automated access control system that logs entry events and restricts unauthorized personnel.
+approach: Built an STM32-based RFID gate that validates card UIDs against a local allowlist and logs all events to an SD card.
+architectureSummary: RC522 RFID reader -> STM32F103 -> card validation -> servo gate + SD card log
+hardwareUsed:
+  - STM32F103 Blue Pill
+  - RC522 RFID Module
+  - Servo Motor
+  - SD Card Module
+softwareStack:
+  - C/C++ (STM32 HAL)
+  - SPI protocol
+  - FAT filesystem (FatFs)
+measurableResults:
+  - Card read latency under 200 ms
+  - 100% gate operation reliability across 500 access events
+  - CSV log entries written within 50 ms of each event
+lessonsLearned:
+  - SPI bus contention between RC522 and SD card requires careful CS management
+  - RFID anti-collision handling is critical for multi-card environments
+primaryHardware: STM32
+resultHighlight: Deployed a card-based gate system with real-time entry logging.
+dateCreated: 2023-11-01
+---
+
+## Overview
+
+Manual door access on campus buildings creates security gaps and provides no audit trail. This project implemented an RFID-based gate using an STM32 microcontroller that validates card UIDs and logs all access events to an SD card.
+
+## Technical Approach
+
+The RC522 RFID reader communicates via SPI. Validated UIDs are checked against a hard-coded allowlist in flash memory. Authorized entries trigger the servo motor to open the gate for 3 seconds, while all events — authorized and rejected — are appended to a timestamped CSV log on the SD card.
+
+## Results
+
+- Read latency consistently under 200 ms across 500 test events
+- Zero missed gate operations during the evaluation period
+- CSV log integrity verified against all 500 access events

@@ -1,67 +1,69 @@
-import type { TimelineEntry } from "@/lib/types";
+﻿import type { TimelineEntry } from "@/lib/types";
 
+/**
+ * EXPERIENCE — sorted by dateRange descending.
+ * Only uses the four valid TimelineEntryType values:
+ * Education | Competition | Project | Certification
+ */
 export const EXPERIENCE: TimelineEntry[] = [
   {
     type: "Education",
     title: "Politeknik Negeri Semarang",
     subtitle: "D4 Electronics Engineering Technology",
-    dateRange: "2023-Present",
+    dateRange: "2023–Present",
     icon: "GraduationCap",
-  },
-  {
-    type: "Experience",
-    title: "POLIREVO",
-    subtitle: "Head of KRTMI Division & Programmer",
-    dateRange: "2024-Present",
-    description: "Led the KRTMI robotics division and programmed autonomous and remote-controlled systems for national competitions.",
-    icon: "Users",
   },
   {
     type: "Competition",
     title: "IIIEX 2025",
-    subtitle: "Silver Medal, Post-Stroke Smart Hand",
+    subtitle: "Silver Medal · Post Stroke Smart Hand",
     dateRange: "2025",
-    description: "Awarded Silver Medal at the International Invention, Innovation and Exposition for an IoT-assisted rehabilitation glove.",
+    description:
+      "Awarded Silver Medal at the International Invention, Innovation and Exposition for an IoT-assisted stroke rehabilitation glove.",
     icon: "Trophy",
   },
   {
     type: "Competition",
     title: "Polines Elektro Expo 2024",
-    subtitle: "3rd Place, Post-Stroke Smart Hand",
+    subtitle: "3rd Place · Post Stroke Smart Hand",
     dateRange: "2024",
     description: "Secured 3rd Place in the IoT category at the annual student innovation exhibition.",
     icon: "Trophy",
   },
   {
     type: "Project",
-    title: "Post-Stroke Smart Hand Gloves",
-    subtitle: "ESP32-S3, LVGL, WhatsApp API",
-    dateRange: "2024-2025",
-    description: "Built a wearable rehabilitation glove synchronizing therapy data to the cloud and sending real-time notifications.",
+    title: "Post Stroke Smart Hand",
+    subtitle: "ESP32-S3 · LVGL · Firebase",
+    dateRange: "2024–2025",
+    description:
+      "Built a wearable rehabilitation glove that syncs therapy data to the cloud and sends session summaries via WhatsApp API.",
+    icon: "Cpu",
+  },
+  {
+    type: "Project",
+    title: "POLIREVO — KRTMI Division",
+    subtitle: "Head of Division & Programmer",
+    dateRange: "2024–Present",
+    description:
+      "Led the KRTMI robotics division and programmed autonomous systems for national competitions.",
     icon: "Activity",
   },
   {
     type: "Project",
-    title: "AC Servo Trainer Kit Reconditioning",
-    subtitle: "Mitsubishi MR-J2S-10A, PLC",
-    dateRange: "2026",
-    description: "Reconditioned and rewired an industrial AC servo trainer kit for laboratory practical sessions.",
-    icon: "Wrench",
-  },
-  {
-    type: "Project",
     title: "Transporter Robot",
-    subtitle: "ESP32, PS3 Controller",
+    subtitle: "ESP32 · PS3 Controller",
     dateRange: "2024",
-    description: "Developed a holonomic transporter robot controlled via Bluetooth using a PS3 controller for payload delivery.",
-    icon: "Gamepad2",
+    description:
+      "Developed a holonomic transporter robot controlled via Bluetooth for payload delivery.",
+    icon: "Activity",
   },
   {
     type: "Certification",
     title: "Google Cloud Skills Boost",
     subtitle: "AI Study Jam Season 12",
-    dateRange: "2025-2026",
-    description: "Completed hands-on technical labs focusing on cloud computing, API integration, and generative AI tools.",
+    dateRange: "2025",
+    description:
+      "Completed hands-on labs on cloud computing, API integration, and generative AI tools.",
     icon: "Award",
   },
 ];

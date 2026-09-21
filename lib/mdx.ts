@@ -1,5 +1,5 @@
-/**
- * lib/mdx.ts — MDX parsing utilities for the Prima portfolio.
+﻿/**
+ * lib/mdx.ts â€” MDX parsing utilities for the Prima portfolio.
  *
  * Uses `gray-matter` for frontmatter parsing and `next-mdx-remote/rsc`
  * `compileMDX` for App Router compatible MDX compilation.
@@ -26,12 +26,12 @@ const mdxComponents = {
   ImageCaption,
 };
 
-// ─── Directory constants ─────────────────────────────────────────
+// â”€â”€â”€ Directory constants â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 const BLOG_DIR = path.join(process.cwd(), "content", "blog");
 const PROJECTS_DIR = path.join(process.cwd(), "content", "projects");
 
-// ─── Frontmatter parsers ──────────────────────────────────────────
+// â”€â”€â”€ Frontmatter parsers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /**
  * Parse and normalise blog frontmatter, applying safe defaults for
@@ -121,9 +121,10 @@ function parseProjectFrontmatter(
     ? data.softwareStack.filter((s): s is string => typeof s === "string")
     : [];
 
-  // Field is `measurableResult` (singular) — matches ProjectFrontmatter in types.ts
-  const measurableResult = Array.isArray(data.measurableResult)
-    ? data.measurableResult.filter((r): r is string => typeof r === "string")
+  const measurableResults = Array.isArray(data.measurableResults)
+    ? data.measurableResults.filter((r): r is string => typeof r === "string")
+    : Array.isArray(data.measurableResult)
+    ? (data.measurableResult as unknown[]).filter((r): r is string => typeof r === "string")
     : [];
 
   const lessonsLearned = Array.isArray(data.lessonsLearned)
@@ -139,7 +140,7 @@ function parseProjectFrontmatter(
   const badgeLabel =
     typeof data.badgeLabel === "string" ? data.badgeLabel : undefined;
 
-  // Fall back to empty string — ProjectFrontmatter.imageUrl is required (string, not optional)
+  // Fall back to empty string â€” ProjectFrontmatter.imageUrl is required (string, not optional)
   const imageUrl =
     typeof data.imageUrl === "string" ? data.imageUrl : "";
 
@@ -154,7 +155,7 @@ function parseProjectFrontmatter(
     architectureSummary,
     hardwareUsed,
     softwareStack,
-    measurableResult,
+    measurableResults,
     lessonsLearned,
     primaryHardware,
     resultHighlight,
@@ -164,7 +165,7 @@ function parseProjectFrontmatter(
   };
 }
 
-// ─── File readers ─────────────────────────────────────────────────
+// â”€â”€â”€ File readers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /** Read and parse a single MDX file's frontmatter + raw content. */
 function readMdxFile(filePath: string): {
@@ -186,7 +187,7 @@ function listMdxFiles(dir: string): string[] {
     .map((name) => path.join(dir, name));
 }
 
-// ─── Public API ───────────────────────────────────────────────────
+// â”€â”€â”€ Public API â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /**
  * Return all published blog posts sorted by datePublished descending.
@@ -314,3 +315,5 @@ export async function getProject(
 
   return null;
 }
+
+

@@ -1,5 +1,3 @@
-"use client";
-
 import {
   GraduationCap,
   Trophy,
@@ -7,12 +5,12 @@ import {
   Award,
   Activity,
   Thermometer,
-  Users,
   type LucideIcon,
 } from "lucide-react";
-import { motion } from "framer-motion";
 import type { TimelineEntryType, TimelineEntry } from "@/lib/types";
 import { EXPERIENCE } from "@/lib/data/experience";
+
+// ─── Type metadata ────────────────────────────────────────────────
 
 interface TypeMeta {
   color: string;
@@ -27,12 +25,6 @@ const TYPE_META: Record<TimelineEntryType, TypeMeta> = {
     bgColor: "rgba(59, 130, 246, 0.12)",
     borderColor: "rgba(59, 130, 246, 0.30)",
     label: "Education",
-  },
-  Experience: {
-    color: "#10b981",
-    bgColor: "rgba(16, 185, 129, 0.12)",
-    borderColor: "rgba(16, 185, 129, 0.3)",
-    label: "Experience",
   },
   Competition: {
     color: "var(--color-type-competition)",
@@ -54,6 +46,8 @@ const TYPE_META: Record<TimelineEntryType, TypeMeta> = {
   },
 };
 
+// ─── Icon resolver ────────────────────────────────────────────────
+
 const ICON_MAP: Record<string, LucideIcon> = {
   GraduationCap,
   Trophy,
@@ -61,24 +55,21 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Award,
   Activity,
   Thermometer,
-  Users,
 };
 
 const TYPE_DEFAULT_ICON: Record<TimelineEntryType, LucideIcon> = {
   Education: GraduationCap,
-  Experience: Users,
   Competition: Trophy,
   Project: Cpu,
   Certification: Award,
 };
 
-function renderIcon(entry: TimelineEntry) {
-  const IconComponent = (entry.icon && ICON_MAP[entry.icon]) 
-    ? ICON_MAP[entry.icon] 
-    : TYPE_DEFAULT_ICON[entry.type];
-
-  return <IconComponent size={18} strokeWidth={1.75} />;
+function resolveIcon(entry: TimelineEntry): LucideIcon {
+  if (entry.icon && ICON_MAP[entry.icon]) return ICON_MAP[entry.icon];
+  return TYPE_DEFAULT_ICON[entry.type];
 }
+
+// ─── Sub-components ───────────────────────────────────────────────
 
 function TypeBadge({ type }: { type: TimelineEntryType }) {
   const meta = TYPE_META[type];
@@ -97,8 +88,8 @@ function TypeBadge({ type }: { type: TimelineEntryType }) {
 }
 
 function TimelineIconBubble({ entry }: { entry: TimelineEntry }) {
+  const Icon = resolveIcon(entry);
   const meta = TYPE_META[entry.type];
-
   return (
     <div
       className="flex items-center justify-center w-10 h-10 rounded-full shrink-0 border"
@@ -109,26 +100,15 @@ function TimelineIconBubble({ entry }: { entry: TimelineEntry }) {
       }}
       aria-hidden="true"
     >
-      {renderIcon(entry)}
+      <Icon size={18} strokeWidth={1.75} />
     </div>
   );
 }
 
-function TimelineItem({
-  entry,
-  isLast,
-}: {
-  entry: TimelineEntry;
-  isLast: boolean;
-}) {
+function TimelineItem({ entry, isLast }: { entry: TimelineEntry; isLast: boolean }) {
   return (
-    <motion.li 
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="relative flex gap-4"
-    >
+    <li className="relative flex gap-4">
+      {/* Vertical connector — hidden on last item */}
       {!isLast && (
         <div
           className="absolute left-5 top-10 bottom-0 w-px"
@@ -140,71 +120,66 @@ function TimelineItem({
       <TimelineIconBubble entry={entry} />
 
       <div
-        className="flex-1 pb-8 glass-card p-4 rounded-xl"
+        className="flex-1 pb-8 glass-card p-4"
         style={{ border: "1px solid var(--color-border-glass)" }}
       >
+        {/* Top row: badge + date */}
         <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
           <TypeBadge type={entry.type} />
-          <time
-            className="text-xs font-mono"
-            style={{ color: "var(--color-text-muted)" }}
-          >
+          <time className="text-xs font-mono" style={{ color: "var(--color-text-muted)" }}>
             {entry.dateRange}
           </time>
         </div>
 
-        <h3
-          className="font-semibold text-base leading-snug"
-          style={{ color: "var(--color-text-primary)" }}
-        >
+        <h3 className="font-semibold text-base leading-snug" style={{ color: "var(--color-text-primary)" }}>
           {entry.title}
         </h3>
 
-        <p
-          className="text-sm mt-0.5"
-          style={{ color: "var(--color-text-secondary)" }}
-        >
+        <p className="text-sm mt-0.5" style={{ color: "var(--color-text-secondary)" }}>
           {entry.subtitle}
         </p>
 
         {entry.description && (
-          <p
-            className="text-sm mt-2 leading-relaxed"
-            style={{ color: "var(--color-text-muted)" }}
-          >
+          <p className="text-sm mt-2 leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
             {entry.description}
           </p>
         )}
       </div>
-    </motion.li>
+    </li>
   );
 }
 
+// ─── ExperienceSection ────────────────────────────────────────────
+
+/**
+ * ExperienceSection — server component, vertical timeline.
+ *
+ * - id="experience" owned by page.tsx outer <section>; this component
+ *   supplies its own heading and semantic <ol>.
+ * - Four entry types: Education (blue), Competition (amber),
+ *   Project (emerald), Certification (violet).
+ */
 export function ExperienceSection() {
   return (
-    <div
-      aria-label="Experience timeline"
-      className="py-[var(--spacing-section-y)] sm:py-[var(--spacing-section-y-sm)]"
+    <section
+      id="experience"
+      aria-labelledby="experience-heading"
+      className="py-16 px-4 sm:px-6 lg:px-8"
       style={{ backgroundColor: "var(--color-bg-secondary)" }}
     >
-      <div className="mx-auto max-w-[var(--spacing-container-max)] px-4 sm:px-6 lg:px-8">
-        <header className="mb-12">
-          <h2
-            className="text-[var(--font-size-display-md)] font-bold tracking-tight"
-            style={{ color: "var(--color-text-primary)" }}
-          >
-            Experience
-          </h2>
-          <p
-            className="mt-2 text-sm"
-            style={{ color: "var(--color-text-secondary)" }}
-          >
-            Education, competitions, projects, and certifications — sorted
-            latest first.
-          </p>
-        </header>
+      <div className="mx-auto max-w-[1280px]">
+        <h2
+          id="experience-heading"
+          className="text-2xl font-bold mb-2"
+          style={{ color: "var(--color-text-primary)" }}
+        >
+          Experience
+        </h2>
+        <p className="text-sm mb-10" style={{ color: "var(--color-text-secondary)" }}>
+          Education, competitions, projects, and certifications — latest first.
+        </p>
 
-        <ol aria-label="Timeline entries" className="flex flex-col gap-0">
+        <ol aria-label="Experience timeline entries" className="flex flex-col">
           {EXPERIENCE.map((entry, idx) => (
             <TimelineItem
               key={`${entry.type}-${entry.title}-${entry.dateRange}`}
@@ -214,6 +189,6 @@ export function ExperienceSection() {
           ))}
         </ol>
       </div>
-    </div>
+    </section>
   );
 }

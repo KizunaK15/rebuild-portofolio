@@ -1,14 +1,13 @@
-import { describe, it, expect } from "vitest";
+﻿import { describe, it, expect } from "vitest";
 import * as fc from "fast-check";
-import { validateName, validateEmail, validateMessage, validateContactForm } from "@/lib/contactValidator";
+import { validateName, validateEmail, validateMessage } from "@/lib/contactValidator";
 
 describe("validateName", () => {
-  it("accepts any 1–100 char string with at least one non-whitespace", () => {
+  it("accepts any 1-100 char string with at least one non-whitespace", () => {
     fc.assert(
       fc.property(
-        fc.stringOf(fc.char(), { minLength: 1, maxLength: 100 })
-          .filter(s => s.trim().length > 0),
-        (name) => {
+        fc.string({ minLength: 1, maxLength: 100 }).filter((s: string) => s.trim().length > 0),
+        (name: string) => {
           const result = validateName(name);
           expect(result.valid).toBe(true);
         }
@@ -17,24 +16,21 @@ describe("validateName", () => {
     );
   });
 
-  it("rejects empty or whitespace-only names", () => {
-    fc.assert(
-      fc.property(
-        fc.stringOf(fc.constant(" "), { minLength: 0, maxLength: 10 }),
-        (name) => {
-          const result = validateName(name);
-          expect(result.valid).toBe(false);
-        }
-      ),
-      { numRuns: 100 }
-    );
+  it("rejects empty string", () => {
+    const result = validateName("");
+    expect(result.valid).toBe(false);
+  });
+
+  it("rejects whitespace-only name", () => {
+    const result = validateName("   ");
+    expect(result.valid).toBe(false);
   });
 
   it("rejects names over 100 characters", () => {
     fc.assert(
       fc.property(
-        fc.stringOf(fc.char(), { minLength: 101, maxLength: 200 }),
-        (name) => {
+        fc.string({ minLength: 101, maxLength: 200 }),
+        (name: string) => {
           const result = validateName(name);
           expect(result.valid).toBe(false);
         }
@@ -49,7 +45,7 @@ describe("validateEmail", () => {
     fc.assert(
       fc.property(
         fc.emailAddress(),
-        (email) => {
+        (email: string) => {
           const result = validateEmail(email);
           expect(result.valid).toBe(true);
         }
@@ -61,8 +57,8 @@ describe("validateEmail", () => {
   it("rejects strings without @ symbol", () => {
     fc.assert(
       fc.property(
-        fc.string({ minLength: 1, maxLength: 50 }).filter(s => !s.includes("@")),
-        (email) => {
+        fc.string({ minLength: 1, maxLength: 50 }).filter((s: string) => !s.includes("@")),
+        (email: string) => {
           const result = validateEmail(email);
           expect(result.valid).toBe(false);
         }
@@ -73,11 +69,11 @@ describe("validateEmail", () => {
 });
 
 describe("validateMessage", () => {
-  it("accepts messages 1–1000 chars", () => {
+  it("accepts messages 1-1000 chars with content", () => {
     fc.assert(
       fc.property(
-        fc.string({ minLength: 1, maxLength: 1000 }).filter(s => s.trim().length > 0),
-        (msg) => {
+        fc.string({ minLength: 1, maxLength: 1000 }).filter((s: string) => s.trim().length > 0),
+        (msg: string) => {
           const result = validateMessage(msg);
           expect(result.valid).toBe(true);
         }
@@ -90,7 +86,7 @@ describe("validateMessage", () => {
     fc.assert(
       fc.property(
         fc.string({ minLength: 1001, maxLength: 2000 }),
-        (msg) => {
+        (msg: string) => {
           const result = validateMessage(msg);
           expect(result.valid).toBe(false);
         }
