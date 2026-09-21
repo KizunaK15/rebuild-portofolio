@@ -1,0 +1,44 @@
+﻿---
+title: Line Follower Transporter Robot
+slug: line-follower-transporter-robot
+problemStatement: Autonomous material transport on factory floors required a low-cost robot that follows a fixed path and delivers payloads without operator intervention.
+approach: Built an ESP32-based line follower using an IR sensor array for path detection and a PID controller for smooth trajectory tracking at variable speeds.
+architectureSummary: IR sensor array -> ESP32 PID controller -> L298N motor driver -> DC motors + payload platform
+hardwareUsed:
+  - ESP32
+  - IR Sensor Array (5-channel)
+  - L298N Motor Driver
+  - DC Motors with Wheels
+  - Payload Platform
+softwareStack:
+  - C/C++ (Arduino)
+  - PID control algorithm
+  - Custom line-detection library
+measurableResults:
+  - Completed 5-meter track without line deviation across 20 consecutive runs
+  - Payload delivery accuracy within 2 cm of target stop position
+  - Track traversal time under 12 seconds at medium speed setting
+lessonsLearned:
+  - PID tuning on line followers is highly sensitive to surface reflectivity changes
+  - Calibration routine at startup eliminates ambient light interference
+primaryHardware: ESP32
+resultHighlight: Completed autonomous payload delivery across a 5-meter line track without deviation.
+imageUrl: /images/line-follower-transporter-robot.jpeg
+dateCreated: 2024-03-01
+---
+
+## Overview
+
+Manual material transport on small production floors is repetitive and error-prone. This line follower transporter robot automates fixed-path delivery using a 5-channel IR sensor array and an ESP32 microcontroller, enabling unattended operation without GPS or complex mapping.
+
+## Technical Approach
+
+Five IR sensors continuously sample the line contrast beneath the robot. The ESP32 runs a discrete PID controller at 20 ms intervals, computing a correction signal that adjusts left and right motor speeds through an L298N dual H-bridge driver. A calibration routine runs at startup, sampling each sensor over the actual surface to normalize for lighting variation.
+
+The robot stops automatically at designated delivery points identified by a wider black marker strip, holds for a configurable dwell time, then continues to the next waypoint.
+
+## Results
+
+- 20 consecutive laps completed on a 5-meter oval track without a single line-loss event
+- Payload stop position repeatable within 2 cm of the target marker
+- Full-track traversal time: 11.8 seconds average at medium throttle (40% PWM)

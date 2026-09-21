@@ -1,16 +1,16 @@
-import type { ProjectSummary } from "@/lib/types";
+﻿import type { ProjectSummary } from "@/lib/types";
 
 export const PROJECTS: ProjectSummary[] = [
   {
     slug: "post-stroke-smart-hand",
     title: "Post Stroke Smart Hand",
-    // ≤ 30 words ✓ (24 words)
+    // â‰¤ 30 words âœ“ (24 words)
     problemStatement:
       "Stroke patients lacked affordable, connected rehabilitation tools that track therapy progress and report to their therapists in real time.",
     primaryHardware: "ESP32-S3",
-    // ≤ 20 words ✓ (11 words)
+    // â‰¤ 20 words âœ“ (11 words)
     resultHighlight: "Won Silver Medal at IIIEX 2025 international invention exhibition.",
-    badgeLabel: "Silver Medal · IIIEX 2025",   // uses · separator per spec
+    badgeLabel: "Silver Medal Â· IIIEX 2025",   // uses Â· separator per spec
     imageUrl: "/images/post-stroke.jpg",
   },
   {
@@ -41,7 +41,7 @@ export const PROJECTS: ProjectSummary[] = [
     slug: "mushroom-iot-monitor",
     title: "Mushroom IoT Monitor",
     problemStatement:
-      "Mushroom cultivators needed precise humidity and CO₂ monitoring to maximize yield without continuous manual supervision.",
+      "Mushroom cultivators needed precise humidity and COâ‚‚ monitoring to maximize yield without continuous manual supervision.",
     primaryHardware: "ESP32",
     resultHighlight: "Increased yield consistency by automating environmental feedback control.",
   },
@@ -54,3 +54,4 @@ export const PROJECTS: ProjectSummary[] = [
     resultHighlight: "Successfully navigated a 15 cm step height at controlled velocity.",
   },
 ];
+
