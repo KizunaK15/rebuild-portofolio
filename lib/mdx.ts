@@ -60,7 +60,7 @@ function parseBlogFrontmatter(
     "Embedded Systems",
     "IoT",
     "AI Integration",
-    "Control System",
+    "Control Systems",
   ] as const;
   type ValidCategory = (typeof validCategories)[number];
   const category: BlogFrontmatter["category"] = validCategories.includes(
