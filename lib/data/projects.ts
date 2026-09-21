@@ -1,6 +1,7 @@
 ﻿import type { ProjectSummary } from "@/lib/types";
 
 export const PROJECTS: ProjectSummary[] = [
+  // ── Award-winning ──────────────────────────────────────────────
   {
     slug: "post-stroke-smart-hand",
     title: "Post Stroke Smart Hand",
@@ -9,47 +10,47 @@ export const PROJECTS: ProjectSummary[] = [
     primaryHardware: "ESP32-S3",
     resultHighlight: "Won Silver Medal at IIIEX 2025 international invention exhibition.",
     badgeLabel: "Silver Medal \u00b7 IIIEX 2025",
-    imageUrl: "/images/post-stroke.jpg",
+    imageUrl: "/images/smart-hand.jpeg",
   },
+
+  // ── Control Systems ────────────────────────────────────────────
   {
     slug: "water-level-pid-control",
     title: "Water Level PID Control",
     problemStatement:
-      "Industrial water tanks required precise level control with minimal overshoot and fast settling time using low-cost hardware.",
+      "Water tanks required precise level control with minimal overshoot and fast settling time using low-cost embedded hardware.",
     primaryHardware: "Arduino Uno",
     resultHighlight: "Achieved steady-state error under 2.5 mm and overshoot below 2%.",
+    imageUrl: "/images/water-level.jpeg",
   },
   {
-    slug: "poultry-climate-controller",
-    title: "Poultry Climate Controller",
+    slug: "ac-servo-mrj2s",
+    title: "AC Servo Position Control (MR-J2S)",
     problemStatement:
-      "Small poultry farms needed automated climate monitoring to reduce manual checks and improve livestock survival rates.",
+      "Industrial servo drives required a precise position control interface to enable repeatable motion for automated manufacturing fixtures.",
+    primaryHardware: "Mitsubishi MR-J2S",
+    resultHighlight: "Implemented closed-loop position control with sub-millimeter repeatability.",
+    imageUrl: "/images/ac-servo-mrj2s.jpeg",
+  },
+
+  // ── Robotics ───────────────────────────────────────────────────
+  {
+    slug: "krtmi-2024",
+    title: "KRTMI 2024 \u2014 Thematic Robot",
+    problemStatement:
+      "The Indonesian Robot Contest (KRTMI) required a fully autonomous thematic robot capable of completing structured tasks in a competition arena.",
+    primaryHardware: "ESP32 / Arduino",
+    resultHighlight: "Competed at KRTMI 2024 as part of POLIREVO robotics team.",
+    imageUrl: "/images/krtmi.jpeg",
+  },
+  {
+    slug: "transporter-robot",
+    title: "Omni-Wheel Transporter Robot",
+    problemStatement:
+      "Campus logistics required a holonomic mobile platform capable of omnidirectional movement for payload transport in confined spaces.",
     primaryHardware: "ESP32",
-    resultHighlight: "Enabled remote temperature and humidity control via MQTT dashboard.",
-  },
-  {
-    slug: "rfid-smart-gate",
-    title: "RFID Smart Gate System",
-    problemStatement:
-      "Campus buildings lacked an automated access control system that logs entry events and restricts unauthorized personnel.",
-    primaryHardware: "STM32",
-    resultHighlight: "Deployed a card-based gate system with real-time entry logging.",
-  },
-  {
-    slug: "mushroom-iot-monitor",
-    title: "Mushroom IoT Monitor",
-    problemStatement:
-      "Mushroom cultivators needed precise humidity and CO\u2082 monitoring to maximize yield without continuous manual supervision.",
-    primaryHardware: "ESP32",
-    resultHighlight: "Increased yield consistency by automating environmental feedback control.",
-  },
-  {
-    slug: "stair-climbing-robot",
-    title: "Stair Climbing Robot",
-    problemStatement:
-      "Delivery and inspection robots required a reliable mechanical system to navigate staircase transitions autonomously.",
-    primaryHardware: "Arduino Mega",
-    resultHighlight: "Successfully navigated a 15 cm step height at controlled velocity.",
+    resultHighlight: "Achieved smooth omnidirectional navigation with zero turning radius.",
+    imageUrl: "/images/transporter-robot.jpeg",
   },
   {
     slug: "line-follower-transporter-robot",

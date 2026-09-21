@@ -1,0 +1,39 @@
+﻿---
+title: AC Servo Position Control (MR-J2S)
+slug: ac-servo-mrj2s
+problemStatement: Industrial servo drives required a precise position control interface to enable repeatable motion for automated manufacturing fixtures.
+approach: Configured Mitsubishi MR-J2S servo amplifier for position control mode, interfaced via pulse-direction signals from a microcontroller, and tuned PID gains for minimal settling time.
+architectureSummary: Microcontroller PWM/pulse output -> MR-J2S amplifier -> servo motor -> encoder feedback
+hardwareUsed:
+  - Mitsubishi MR-J2S Servo Amplifier
+  - Mitsubishi AC Servo Motor
+  - Rotary Encoder (built-in)
+  - Arduino / STM32 for pulse generation
+softwareStack:
+  - C/C++
+  - MR-J2S configuration software (MR Configurator)
+measurableResults:
+  - Sub-millimeter positioning repeatability across 100 consecutive cycles
+  - Settling time under 150 ms for 90-degree moves
+lessonsLearned:
+  - Servo parameter tuning (gain, filter, notch) must account for mechanical resonance frequency
+  - Encoder resolution directly limits achievable positioning accuracy
+primaryHardware: Mitsubishi MR-J2S
+resultHighlight: Implemented closed-loop position control with sub-millimeter repeatability.
+imageUrl: /images/ac-servo-mrj2s.jpeg
+dateCreated: 2024-05-01
+---
+
+## Overview
+
+Industrial automation often demands precision motion that general-purpose motor drivers cannot provide. The Mitsubishi MR-J2S is a professional AC servo amplifier used in manufacturing lines. This project involved commissioning and controlling the drive for a positioning fixture.
+
+## Technical Approach
+
+The MR-J2S was configured in position control mode using pulse-and-direction input. A microcontroller generates the pulse train at a rate proportional to the desired velocity, with step count determining final position. Tuning involved adjusting the amplifier's internal PID and filter parameters via MR Configurator software.
+
+## Results
+
+- Sub-millimeter positioning repeatability confirmed across 100 successive move cycles
+- Settling time under 150 ms for quarter-turn moves at medium acceleration
+- System demonstrated stable operation under varying load conditions

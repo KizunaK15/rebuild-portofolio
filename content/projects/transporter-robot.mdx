@@ -1,0 +1,41 @@
+﻿---
+title: Omni-Wheel Transporter Robot
+slug: transporter-robot
+problemStatement: Campus logistics required a holonomic mobile platform capable of omnidirectional movement for payload transport in confined spaces.
+approach: Built a three-omni-wheel holonomic drive platform controlled by an ESP32, using inverse kinematics to translate joystick or autonomous commands into per-wheel velocity vectors.
+architectureSummary: ESP32 controller -> inverse kinematics module -> 3x motor driver -> omni wheels
+hardwareUsed:
+  - ESP32
+  - Omni Wheels (x3)
+  - DC Motors with Encoder
+  - L298N Motor Drivers
+  - LiPo Battery Pack
+softwareStack:
+  - C/C++ (Arduino/ESP-IDF)
+  - Inverse kinematics calculations
+  - UART remote control
+measurableResults:
+  - Zero turning radius achieved with smooth omnidirectional movement
+  - Payload capacity of 2 kg without wheel slip at full speed
+lessonsLearned:
+  - Wheel angle precision is critical — small mounting errors cause drift at speed
+  - Encoder feedback is essential for straight-line hold without drift
+primaryHardware: ESP32
+resultHighlight: Achieved smooth omnidirectional navigation with zero turning radius.
+imageUrl: /images/transporter-robot.jpeg
+dateCreated: 2024-06-01
+---
+
+## Overview
+
+Standard differential-drive robots cannot translate sideways or rotate about a fixed point, limiting their usability in tight spaces. This omni-wheel transporter addresses that by using three mecanum-style omni wheels arranged at 120° intervals for full holonomic motion.
+
+## Technical Approach
+
+Each wheel is driven by a separate DC motor through an L298N driver. The ESP32 runs an inverse kinematics routine that decomposes a desired velocity vector (Vx, Vy, ω) into per-wheel RPM commands. This enables pure lateral movement, diagonal travel, and spin-in-place with no repositioning required.
+
+## Results
+
+- Full omnidirectional movement at up to 0.8 m/s
+- Payload transport of 2 kg demonstrated without wheel slip
+- Smooth rotation in place with zero turning radius

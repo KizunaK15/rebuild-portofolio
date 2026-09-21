@@ -1,0 +1,46 @@
+﻿---
+title: KRTMI 2024 — Thematic Robot
+slug: krtmi-2024
+problemStatement: The Indonesian Robot Contest (KRTMI) required a fully autonomous thematic robot capable of completing structured tasks in a competition arena.
+approach: Developed robot firmware in C/C++ using ESP32 and Arduino for motion control, sensor integration, and task sequencing as part of POLIREVO robotics team.
+architectureSummary: IR sensors + ultrasonic -> ESP32/Arduino controller -> L298N motor drivers -> DC motors + servo actuators
+hardwareUsed:
+  - ESP32
+  - Arduino Uno
+  - IR Sensors
+  - HC-SR04 Ultrasonic
+  - L298N Motor Driver
+  - DC Motors
+  - Servo Motors
+softwareStack:
+  - C/C++ (Arduino IDE)
+  - FreeRTOS (task scheduling)
+measurableResults:
+  - Successfully completed competition arena task sequences during KRTMI 2024
+  - Achieved reliable autonomous navigation within 3-meter arena boundaries
+lessonsLearned:
+  - Motor driver selection significantly impacts torque headroom under load
+  - Structured state machines outperform monolithic loop code for multi-task robots
+primaryHardware: ESP32 / Arduino
+resultHighlight: Competed at KRTMI 2024 as part of POLIREVO robotics team.
+imageUrl: /images/krtmi.jpeg
+dateCreated: 2024-08-01
+---
+
+## Overview
+
+The Indonesian Robot Contest — Thematic Category (KRTMI) is an annual national competition requiring teams to build autonomous robots that complete structured mission tasks within a defined arena. This entry was developed by the POLIREVO (Polines Robotics Evolution) team from Politeknik Negeri Semarang.
+
+## Technical Approach
+
+The robot uses a layered control architecture: an IR sensor array handles line detection and path correction, while ultrasonic sensors provide obstacle awareness. A state machine running on the microcontroller sequences through task phases — approach, pick, transport, release — without human intervention.
+
+## Team Role
+
+As Head of KRTMI Division at POLIREVO (Aug 2024 – Aug 2025), Prima led the research and development process, coordinated a multidisciplinary team across software, electronics, and mechanical subsystems, and managed system integration and testing.
+
+## Results
+
+- Robot completed structured task sequences in competition arena conditions
+- State machine architecture enabled clean recovery from sensor noise without manual reset
+- Team gained competition experience that fed directly into subsequent IoT and embedded projects

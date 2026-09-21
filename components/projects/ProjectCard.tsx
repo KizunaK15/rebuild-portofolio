@@ -1,6 +1,7 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Award } from "lucide-react";
 import { cardHover } from "@/components/animations/motionVariants";
@@ -9,18 +10,12 @@ import type { ProjectSummary } from "@/lib/types";
 type ProjectCardProps = ProjectSummary;
 
 /**
- * ProjectCard — glassmorphism card linking to /projects/[slug].
+ * ProjectCard — glassmorphism card dengan gambar opsional.
  *
- * - Optional badge for award-winning projects (Req 10.3)
- * - Problem statement ≤ 30 words (Req 10.6)
- * - Primary hardware chip tag (Req 10.6)
- * - Result highlight ≤ 20 words (Req 10.6)
- * - cardHover scale 1.02, 200ms (Req 5.7)
- * - Keyboard focus ring via Link (Req 3.3, 3.4)
- * - No image rendered here — cards stay uniform height (Req 6.5)
- *
- * NOTE: imageUrl is part of the type but intentionally not rendered
- * in the summary card — it's used in the ProjectDetail page instead.
+ * - Jika imageUrl tersedia: tampilkan gambar di bagian atas card (aspect-video)
+ * - Badge award hanya muncul jika badgeLabel ada
+ * - Hover: scale 1.02, shadow glow, 200ms
+ * - Keyboard accessible via parent Link dengan focus ring
  */
 export function ProjectCard({
   slug,
@@ -29,11 +24,12 @@ export function ProjectCard({
   primaryHardware,
   resultHighlight,
   badgeLabel,
+  imageUrl,
 }: ProjectCardProps) {
   return (
     <Link
       href={`/projects/${slug}`}
-      aria-label={`View project: ${title}`}
+      aria-label={`Lihat proyek: ${title}`}
       className={[
         "block h-full",
         "focus-visible:outline-none",
@@ -45,68 +41,106 @@ export function ProjectCard({
       ].join(" ")}
     >
       <motion.div
-        className="glass-card p-6 h-full flex flex-col gap-3"
+        className="glass-card h-full flex flex-col overflow-hidden"
         variants={cardHover}
         initial="rest"
         whileHover="hover"
-        // Keep explicit cursor so it works even when framer disables animations
         style={{ boxShadow: "var(--shadow-card)", cursor: "pointer" }}
       >
-        {/* ── Badge (award-winning projects only) ── */}
-        {badgeLabel && (
-          <div
-            role="img"
-            aria-label={`Award: ${badgeLabel}`}
-            className="flex items-center gap-1.5 self-start rounded-full px-3 py-1 text-xs font-medium"
-            style={{
-              backgroundColor: "rgba(99, 102, 241, 0.15)",
-              color: "var(--color-accent)",
-              border: "1px solid rgba(99, 102, 241, 0.30)",
-            }}
-          >
-            <Award size={12} aria-hidden="true" />
-            {badgeLabel}
+        {/* ── Gambar proyek (jika tersedia) ── */}
+        {imageUrl && (
+          <div className="relative w-full aspect-video overflow-hidden">
+            <Image
+              src={imageUrl}
+              alt={`${title} — project photo`}
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+            />
+            {/* Gradient overlay bawah agar teks tidak clash dengan gambar */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(10,15,30,0.6) 0%, transparent 60%)",
+              }}
+              aria-hidden="true"
+            />
+            {/* Badge di atas gambar jika ada */}
+            {badgeLabel && (
+              <div
+                className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium backdrop-blur-sm"
+                style={{
+                  backgroundColor: "rgba(99, 102, 241, 0.85)",
+                  color: "#ffffff",
+                  border: "1px solid rgba(99, 102, 241, 0.50)",
+                }}
+              >
+                <Award size={11} aria-hidden="true" />
+                {badgeLabel}
+              </div>
+            )}
           </div>
         )}
 
-        {/* ── Title ── */}
-        <h3
-          className="font-semibold text-base leading-snug"
-          style={{ color: "var(--color-text-primary)" }}
-        >
-          {title}
-        </h3>
+        {/* ── Konten card ── */}
+        <div className="flex flex-col gap-3 p-5 flex-1">
+          {/* Badge — tampil di sini jika TIDAK ada gambar */}
+          {badgeLabel && !imageUrl && (
+            <div
+              role="img"
+              aria-label={`Award: ${badgeLabel}`}
+              className="flex items-center gap-1.5 self-start rounded-full px-3 py-1 text-xs font-medium"
+              style={{
+                backgroundColor: "rgba(99, 102, 241, 0.15)",
+                color: "var(--color-accent)",
+                border: "1px solid rgba(99, 102, 241, 0.30)",
+              }}
+            >
+              <Award size={12} aria-hidden="true" />
+              {badgeLabel}
+            </div>
+          )}
 
-        {/* ── Problem statement (≤ 30 words, line-clamp for safety) ── */}
-        <p
-          className="text-sm line-clamp-3 leading-relaxed"
-          style={{ color: "var(--color-text-secondary)" }}
-        >
-          {problemStatement}
-        </p>
+          {/* Judul */}
+          <h3
+            className="font-semibold text-base leading-snug"
+            style={{ color: "var(--color-text-primary)" }}
+          >
+            {title}
+          </h3>
 
-        {/* ── Spacer — pushes meta to card bottom for uniform grid look ── */}
-        <div className="flex-1" />
+          {/* Problem statement */}
+          <p
+            className="text-sm line-clamp-3 leading-relaxed"
+            style={{ color: "var(--color-text-secondary)" }}
+          >
+            {problemStatement}
+          </p>
 
-        {/* ── Primary hardware chip ── */}
-        <span
-          className="self-start text-xs rounded-md px-2.5 py-1 font-mono"
-          style={{
-            backgroundColor: "var(--color-bg-elevated)",
-            color: "var(--color-text-secondary)",
-            border: "1px solid var(--color-border)",
-          }}
-        >
-          {primaryHardware}
-        </span>
+          {/* Spacer */}
+          <div className="flex-1" />
 
-        {/* ── Result highlight (≤ 20 words) ── */}
-        <p
-          className="text-sm italic leading-snug"
-          style={{ color: "var(--color-text-muted)" }}
-        >
-          {resultHighlight}
-        </p>
+          {/* Hardware chip */}
+          <span
+            className="self-start text-xs rounded-md px-2.5 py-1 font-mono"
+            style={{
+              backgroundColor: "var(--color-bg-elevated)",
+              color: "var(--color-text-secondary)",
+              border: "1px solid var(--color-border)",
+            }}
+          >
+            {primaryHardware}
+          </span>
+
+          {/* Result highlight */}
+          <p
+            className="text-sm italic leading-snug"
+            style={{ color: "var(--color-text-muted)" }}
+          >
+            {resultHighlight}
+          </p>
+        </div>
       </motion.div>
     </Link>
   );
